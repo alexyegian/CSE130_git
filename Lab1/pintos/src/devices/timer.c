@@ -106,27 +106,16 @@ timer_sleep (int64_t ticks)
 {
   if(ticks <= 0){
     return;}
- // printf("TIMER SLEEP START\n");
   struct timer_elem* elem = malloc(sizeof(struct timer_elem));
   struct elem_holder* holder = malloc(sizeof(struct elem_holder));
-  //memset(elem, 0, sizeof(struct timer_elem));
   struct thread * cur = thread_current();
- // printf("TIMER SLEEP AFTER CUR\n");
   
   int64_t start = timer_ticks();
   int64_t wake_up = start + ticks;
   elem->first = cur;
   elem->second = wake_up;
-  //printf("WAKE UP: %"PRId64"\n",wake_up);
-  //printf("ELEM: %"PRId64"\n", elem->second);
   holder->timer_el = *elem;
-  //if(elem != NULL){
-//	  printf("NOT NULL\n");}
- // printf("TIMER SLEEP BEFORE LIST END\n");
- // printf("WAKE UP TIME: %"PRId64"\n",((struct timer_elem *) elem)->second);
   struct list_elem *insert_elem = list_end(&timer_list);
- // printf("TIMER SLEEP BEFORE LOOP\n");
-
   for(struct list_elem* x = list_begin(&timer_list); x != insert_elem; x = list_next(x)){
     struct elem_holder * hold = list_entry(x, struct elem_holder, el);
     if( hold->timer_el.second >= elem->second){
@@ -134,21 +123,7 @@ timer_sleep (int64_t ticks)
         break;
     }
   }
-  //printf("TIMER SLEEP AFTER LOOP\n");
-  //list_push_front(&timer_list, &(holder->el));
   list_insert(insert_elem, &(holder->el));
-  //printf("ELEM 2: %"PRId64"\n", holder->timer_el.second);
-  //printf("INSERT ELEM TIME: %"PRId64"\n",wake_up);
-  //struct thread *for_thread = list_entry(e, struct thread, timer_elem);
-  //struct elem_holder * hold = list_entry(&(holder->el), struct elem_holder, el);
-  //printf("LIST ELEM: %"PRId64"\n", hold->timer_el.second);
-  //for(struct list_elem * e = list_begin(&timer_list); e!=list_end(&timer_list); e = list_next(e)){
-    //struct elem_holder * head = list_entry(e, struct elem_holder, el);
-    //printf("HOLDER: %"PRId64"\n", head->timer_el.second);
-      //}
-  //struct elem_holder * head = list_entry(list_begin(&timer_list), struct elem_holder, el);
-  //printf("HEAD ELEM: %"PRId64"\n", head->timer_el.second);
- // intprintf("ELEM: %"PRId64"\n", elem->second);
   intr_disable();
   
   thread_block();
@@ -229,53 +204,20 @@ static void
 timer_interrupt (struct intr_frame *args UNUSED)
 {
   ticks++;
-//  printf("TICK: %"PRId64"\n",ticks); 
   thread_tick ();
 
 
   struct list_elem * e = list_begin(&timer_list);
   while(e!=list_end(&timer_list)){
     struct elem_holder * head = list_entry(e, struct elem_holder, el);
-//    printf("HOLDER: %"PRId64"\n", head->timer_el.second);
     if(ticks < head->timer_el.second){
       break;
     }
     struct elem_holder * temp = head;
     e = list_next(e);
-//    printf("UNBLOCK");
     thread_unblock(temp->timer_el.first);
     list_pop_front(&timer_list);
-   // free(temp);
-    
   }
-
-  //ticks++;
-  //thread_tick();
-
- // if(!list_empty(&timer_list)){
-//	  
-//  for(struct list_elem * loop_elem = list_head(&timer_list); 1!=2; loop_elem = list_next(loop_elem)){
-//    if(loop_elem == list_begin(&timer_list)){
-//	    printf("IS SAME AS BEGIN\n");
-  //  	    break;}
-  //  if(loop_elem == list_end(&timer_list)){
-//	    printf("IS SAME AS END\n");
-//	    break;}
-//    struct elem_holder * hold = list_entry(loop_elem, struct elem_holder, el);
-  //  printf("WAKE AT: %"PRId64"\n",hold->timer_el.second);
-//  }
-//  for(struct list_elem * loop_elem = list_next(list_head(&timer_list)); loop_elem != list_end(&timer_list); loop_elem = list_begin(&timer_list)){
-//    break;
- //   if(((struct timer_elem *) loop_elem)->second > ticks){
- //     printf("BREAK\n");
- //     break;
- //   }
- //   printf("UNBLOCK\n");
- //   thread_unblock(((struct timer_elem *)loop_elem)->first);
- //   list_pop_front(&timer_list);
- // }}
- // else{
-//	  printf("LIST EMPTY\n");}
 }
 
 /* Returns true if LOOPS iterations waits for more than one timer
