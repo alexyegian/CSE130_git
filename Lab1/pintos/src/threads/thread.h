@@ -96,6 +96,8 @@ struct thread
 
    //////////////////////////////////////////////////////////
    //   Do NOT add or modify anything beneath this line    //
+   struct list_elem timer_elem; //for timer list
+   int64_t wake_up_tick; //tick to wake up in relation to when os booted
 
 #ifdef USERPROG
    /* Owned by userprog/process.c */

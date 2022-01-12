@@ -104,29 +104,27 @@ timer_elapsed (int64_t then)
 void
 timer_sleep (int64_t ticks) 
 {
+
+
+  struct thread *cur_thread = thread_current();
+  int64_t total_ticks = timer_ticks () + ticks;
   if(ticks <= 0){
     return;}
-  struct timer_elem* elem = malloc(sizeof(struct timer_elem));
-  struct elem_holder* holder = malloc(sizeof(struct elem_holder));
-  struct thread * cur = thread_current();
-  
-  int64_t start = timer_ticks();
-  int64_t wake_up = start + ticks;
-  elem->first = cur;
-  elem->second = wake_up;
-  holder->timer_el = *elem;
+  cur_thread->wake_up_tick = total_ticks;
   struct list_elem *insert_elem = list_end(&timer_list);
   for(struct list_elem* x = list_begin(&timer_list); x != insert_elem; x = list_next(x)){
-    struct elem_holder * hold = list_entry(x, struct elem_holder, el);
-    if( hold->timer_el.second >= elem->second){
-  	insert_elem = x;
+    struct thread * hold = list_entry(x, struct thread, timer_elem);
+    if( hold->wake_up_tick >= total_ticks){
+        insert_elem = x;
         break;
     }
   }
-  list_insert(insert_elem, &(holder->el));
+  list_insert(insert_elem, &(cur_thread->timer_elem));
+
   intr_disable();
-  
   thread_block();
+  return;
+
 }
 
 /* Sleeps for approximately MS milliseconds.  Interrupts must be
@@ -209,17 +207,16 @@ timer_interrupt (struct intr_frame *args UNUSED)
 
   struct list_elem * e = list_begin(&timer_list);
   while(e!=list_end(&timer_list)){
-    struct elem_holder * head = list_entry(e, struct elem_holder, el);
-    if(ticks < head->timer_el.second){
+    struct thread * head = list_entry(e, struct thread, timer_elem);
+    if(ticks < head->wake_up_tick){
       break;
     }
-    struct elem_holder * temp = head;
+    struct thread * temp = head;
     e = list_next(e);
-    thread_unblock(temp->timer_el.first);
+    thread_unblock(temp);
     list_pop_front(&timer_list);
   }
 }
-
 /* Returns true if LOOPS iterations waits for more than one timer
    tick, otherwise false. */
 static bool
