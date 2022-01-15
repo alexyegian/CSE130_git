@@ -43,22 +43,25 @@ void multiProcessMergeSort(int arr[], int left, int right)
 {
 //  printf("OPEN\n");
   FILE * f = fopen("psortmem","w+");
-  printf("CLOSE\n");
+//  printf("CLOSE\n");
   fclose(f);
   // Delete this line, it's only here to fail the code quality chec
   int shid = shm_open("psortmem", O_RDWR|O_CREAT, 0);
-//DETACH AND DELETE MEMORY
-  ftruncate(shid, 1024);
+  ftruncate(shid, (sizeof(int)*(1+(right-left)))/2);
   printf("AFTER OPEN NO: %d ERROR: %d\n", shid, errno);
-  int* shmem =(int *) mmap(0, 1024,PROT_READ|PROT_WRITE, MAP_SHARED,shid,0);
+  int* shmem =(int *) mmap(0, (sizeof(int)*(1+(right-left))/2), PROT_READ|PROT_WRITE, MAP_SHARED,shid,0);
   printf("BEF LOOP\n");
-  for(int i = 0; i<=right-left; ++i){
-    shmem[i] = arr[i+left];
-    printf("%d: %d\n",i, shmem[i]);
-  }
+//  for(int i = 0; i<rel_mid; ++i){
+//    shmem[i] = arr[i+left];
+//    printf("%d: %d\n",i, shmem[i]);
+//  }
   int rel_left = 0;
   int rel_mid = ((left+right)/2)-left+1;
   int rel_right = 1+(right-left);
+  for(int i = 0; i<rel_mid; ++i){
+    shmem[i] = arr[i+left];
+    printf("%d: %d\n",i, shmem[i]);
+  }
   printf("L: %d M: %d R: %d\n",rel_left, rel_mid, rel_right);
   int pid = fork();
   if(pid == 0){
@@ -74,7 +77,7 @@ void multiProcessMergeSort(int arr[], int left, int right)
     printf("SORTED\n");
     for(int i = 0; i<rel_mid;++i){
       printf("AFT: %d\n",shmem[i]);}
-    munmap(shmem,1024);
+    munmap(shmem, (sizeof(int)*(1+(right-left)))/2);
     exit(0);
   }
   else{
@@ -97,7 +100,7 @@ void multiProcessMergeSort(int arr[], int left, int right)
     merge(arr, left, mid, right);
   }
   printf("REMOVE\n");
-  munmap(shmem, 1024);
+  munmap(shmem, (sizeof(int)*(1+(right-left)))/2);
   shm_unlink("psortmem");
   close(shid);
   remove("psortmem");

@@ -18,7 +18,7 @@
 #include <sys/wait.h>
 #include <sys/shm.h>
 #include <string.h>
-
+#include <errno.h>
 /* 
  * Merge Sort in the current process a sub-array of ARR[] defined by the 
  * LEFT and RIGHT indexes.
@@ -37,35 +37,43 @@ void singleProcessMergeSort(int arr[], int left, int right)
  * Merge Sort in the current process and at least one child process a 
  * sub-array of ARR[] defined by the LEFT and RIGHT indexes.
  */
-void multiProcessMergeSort(int arr[], int left, int right) 
-{
-  // Delete this line, it's only here to fail the code quality check
+void multiProcessMergeSort(int arr[], int left, int right){
+ // Delete this line, it's only here to fail the code quality check
  // printf("START\n");
-  key_t key = ftok("shared", 211);
+  FILE *f = fopen("usortmem","w+");
+  fclose(f);
+  key_t key = ftok("usortmem", 111);
   if(right-left <=0){
     return;
   }
 //  for(int i = left; i<=right;++i){
 //    printf("BEG ARR: %d\n", arr[i]);}
-  int shid = shmget(key, sizeof(int)*(1+(right-left)), 0666|IPC_CREAT);
+  int shid = shmget(key, (sizeof(int)*(1+(right-left)))/2, 0666|IPC_CREAT);
+  printf("ID: %d ERROR: %d\n", shid, errno);
   int * shmem= (int *)shmat(shid,(void *)0,0);
 //  printf("SIZE SHOULD BE: %ld LR: %d\n",sizeof(int)*(1+(right-left)), 1+(right-left));
 //  printf("%p\n", shmem);
-  for(int i = 0; i<=(right-left);++i){
+//  for(int i = 0; i<rel_mid;++i){
 //    printf("ARR I: %d\n", arr[left+i]);
 //    printf("I: %d\n",i);
-    shmem[i]=arr[left+i];
-  }
-//  printf("AFTER THING\n");
+//    shmem[i]=arr[left+i];
+//  }
+  printf("AFTER THING\n");
   int rel_left = 0;
   int rel_mid = ((left+right)/2)-left+1;
   int rel_right = 1+(right-left);
+  for(int i = 0; i<rel_mid;++i){
+//    printf("ARR I: %d\n", arr[left+i]);
+    printf("I: %d\n",i);
+    shmem[i]=arr[left+i];
+  }
+
 //  printf("L: %d M: %d R: %d\n",rel_left, rel_mid, rel_right);
   int pid = fork();
   if(pid == 0){
-    key = ftok("shared", 211);
-    shid = shmget(key, sizeof(int)*(1+(right-left)), IPC_CREAT);
-    shmem = (int *) shmat(shid, (void *) NULL, 0);
+ //   key = ftok("shared", 211);
+ //   shid = shmget(key, sizeof(int)*(1+(right-left)), IPC_CREAT);
+ //   shmem = (int *) shmat(shid, (void *) NULL, 0);
 //    for(int i = 0; i<rel_mid;++i){
 //      printf("BEF: %d\n",shmem[i]);}
     singleProcessMergeSort(shmem, rel_left, rel_mid-1);
@@ -102,9 +110,6 @@ void multiProcessMergeSort(int arr[], int left, int right)
 //    printf("END\n");
     shmdt(shmem);
     shmctl(shid,IPC_RMID,NULL);
-//DETACH AND DELETE MEMORY
-  }
-
-
-  // Your code goes here 
+    remove("usortmem");
+  }	
 }
