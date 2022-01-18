@@ -38,13 +38,13 @@ void singleProcessMergeSort(int arr[], int left, int right)
  * sub-array of ARR[] defined by the LEFT and RIGHT indexes.
  */
 void multiProcessMergeSort(int arr[], int left, int right){
-  FILE *f = fopen("usortmem","w+");
-  fclose(f);
-  key_t key = ftok("usortmem", 111);
+//  FILE *f = fopen("usortmem","w+");
+// fclose(f);
+//  key_t key = ftok("usortmem", 111);
   if(right-left <=0){
     return;
   }
-  int shid = shmget(key, (sizeof(int)*(1+(right-left)))/2, 0666|IPC_CREAT);
+  int shid = shmget(IPC_PRIVATE, (sizeof(int)*(1+(right-left)))/2, 0666|IPC_CREAT);
   int * shmem= (int *)shmat(shid,(void *)0,0);
   int rel_left = 0;
   int rel_mid = ((left+right)/2)-left+1;
@@ -69,6 +69,6 @@ void multiProcessMergeSort(int arr[], int left, int right){
     merge(arr, left, mid, right);
     shmdt(shmem);
     shmctl(shid,IPC_RMID,NULL);
-    remove("usortmem");
+//    remove("usortmem");
   }	
 }

@@ -41,11 +41,11 @@ void singleProcessMergeSort(int arr[], int left, int right)
  */
 void multiProcessMergeSort(int arr[], int left, int right) 
 {
-  FILE * f = fopen("psortmem","w+");
-  fclose(f);
-  int shid = shm_open("psortmem", O_RDWR|O_CREAT, 0);
-  ftruncate(shid, (sizeof(int)*(1+(right-left)))/2);
-  int* shmem =(int *) mmap(0, (sizeof(int)*(1+(right-left))/2), PROT_READ|PROT_WRITE, MAP_SHARED,shid,0);
+//  FILE * f = fopen("psortmem","w+");
+//  fclose(f);
+//  int shid = shm_open("psortmem", O_RDWR|O_CREAT, 0);
+//  ftruncate(shid, (sizeof(int)*(1+(right-left)))/2);
+  int* shmem =(int *) mmap(0, (sizeof(int)*(1+(right-left))/2), PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS,-1,0);
   int rel_left = 0;
   int rel_mid = ((left+right)/2)-left+1;
   int rel_right = 1+(right-left);
@@ -68,7 +68,7 @@ void multiProcessMergeSort(int arr[], int left, int right)
     merge(arr, left, mid, right);
   }
   munmap(shmem, (sizeof(int)*(1+(right-left)))/2);
-  shm_unlink("psortmem");
-  close(shid);
-  remove("psortmem");
+//  shm_unlink("psortmem");
+//  close(shid);
+//  remove("psortmem");
 }
