@@ -42,7 +42,6 @@ void* cart_start(void* args);
 void reserve2(unsigned int cart, enum junction junc1, enum junction junc2);
 void release2(unsigned int cart, enum junction junc1, enum junction junc2);
 void reserve(unsigned int cart, enum junction junction);
-void* test_start(void* args);
 /*
  * Release JUNCTION reserved by CART.
  *
