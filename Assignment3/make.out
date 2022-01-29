@@ -1,0 +1,4 @@
+cartman.c: In function ‘cartman’:
+cartman.c:29:7: warning: unused variable ‘foo’ [-Wunused-variable]
+   int foo = 1024;
+       ^~~

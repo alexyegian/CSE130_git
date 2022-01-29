@@ -1,0 +1,4 @@
+FAIL
+Kernel panic in run: PANIC at ../../lib/kernel/list.c:251 in list_remove(): assertion `is_interior (sharedelem)' failed.
+Call stack: 0xc00298a6 0x6d65725f
+Translation of call stack:

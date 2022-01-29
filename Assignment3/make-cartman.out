@@ -1,0 +1,12 @@
+/usr/bin/ld: cartman.a(cartman.o): in function `cross':
+(.text+0x557): multiple definition of `cross'; /tmp/ccORuG9h.o:/afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment3/cartman.c:42: first defined here
+/usr/bin/ld: cartman.a(cartman.o): in function `reserve':
+(.text+0x6f1): multiple definition of `reserve'; /tmp/ccORuG9h.o:/afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment3/cartman.c:83: first defined here
+/usr/bin/ld: cartman.a(cartman.o): in function `release':
+(.text+0x7f0): multiple definition of `release'; /tmp/ccORuG9h.o:/afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment3/cartman.c:86: first defined here
+/usr/bin/ld: /tmp/ccORuG9h.o: in function `cross':
+/afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment3/cartman.c:46: undefined reference to `release2'
+/usr/bin/ld: /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment3/cartman.c:50: undefined reference to `release2'
+/usr/bin/ld: /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment3/cartman.c:56: undefined reference to `release2'
+/usr/bin/ld: /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment3/cartman.c:59: undefined reference to `release2'
+collect2: error: ld returned 1 exit status
