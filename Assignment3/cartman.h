@@ -27,8 +27,7 @@ enum junction { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q };
  *   4. CART is not currently at JUNCTION 
  *   5. CART is no longer active having already crossed 
  */
-void cross(unsigned int cart, enum track track, enum junction junction); 
-
+void cross(unsigned int cart, enum track track, enum junction junction);
 /*
  * Reserve JUNCTION for use by CART.
  *
@@ -43,7 +42,7 @@ void* cart_start(void* args);
 void reserve2(unsigned int cart, enum junction junc1, enum junction junc2);
 void release2(unsigned int cart, enum junction junc1, enum junction junc2);
 void reserve(unsigned int cart, enum junction junction);
-
+void* test_start(void* args);
 /*
  * Release JUNCTION reserved by CART.
  *
