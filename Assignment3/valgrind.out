@@ -1,28 +1,28 @@
-==3336597== Memcheck, a memory error detector
-==3336597== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==3336597== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==3336597== Command: ./manpage
-==3336597== 
-==3336597== 
-==3336597== HEAP SUMMARY:
-==3336597==     in use at exit: 0 bytes in 0 blocks
-==3336597==   total heap usage: 8 allocs, 8 frees, 6,000 bytes allocated
-==3336597== 
-==3336597== All heap blocks were freed -- no leaks are possible
-==3336597== 
-==3336597== For lists of detected and suppressed errors, rerun with: -s
-==3336597== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==3338385== Memcheck, a memory error detector
-==3338385== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==3338385== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==3338385== Command: ./cartman -s
-==3338385== 
-==3338385== 
-==3338385== HEAP SUMMARY:
-==3338385==     in use at exit: 0 bytes in 0 blocks
-==3338385==   total heap usage: 21 allocs, 21 frees, 17,774 bytes allocated
-==3338385== 
-==3338385== All heap blocks were freed -- no leaks are possible
-==3338385== 
-==3338385== For lists of detected and suppressed errors, rerun with: -s
-==3338385== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3537493== Memcheck, a memory error detector
+==3537493== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3537493== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3537493== Command: ./manpage
+==3537493== 
+==3537493== 
+==3537493== HEAP SUMMARY:
+==3537493==     in use at exit: 0 bytes in 0 blocks
+==3537493==   total heap usage: 8 allocs, 8 frees, 6,000 bytes allocated
+==3537493== 
+==3537493== All heap blocks were freed -- no leaks are possible
+==3537493== 
+==3537493== For lists of detected and suppressed errors, rerun with: -s
+==3537493== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3539490== Memcheck, a memory error detector
+==3539490== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3539490== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3539490== Command: ./cartman -s
+==3539490== 
+==3539490== 
+==3539490== HEAP SUMMARY:
+==3539490==     in use at exit: 0 bytes in 0 blocks
+==3539490==   total heap usage: 21 allocs, 21 frees, 17,774 bytes allocated
+==3539490== 
+==3539490== All heap blocks were freed -- no leaks are possible
+==3539490== 
+==3539490== For lists of detected and suppressed errors, rerun with: -s
+==3539490== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
