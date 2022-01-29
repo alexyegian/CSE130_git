@@ -27,7 +27,7 @@ grade: clean manpage cartman
 clean:
 	@rm -f manpage cartman make*.out
 
-submit: clean
+submit: clean  
 	@echo ""
 	@echo "#### Only these file are submitted:"
 	@echo ""

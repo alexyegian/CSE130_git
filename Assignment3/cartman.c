@@ -31,6 +31,7 @@ void arrive(unsigned int cart, enum track track, enum junction junction)
   c_moves[cart].track_num = track;
   c_moves[cart].junc_num = junction;
   pthread_create(&new_cart, NULL, cart_start, &c_moves[cart]);
+  pthread_detach(new_cart);
 }
 
 void* cart_start(void * args){

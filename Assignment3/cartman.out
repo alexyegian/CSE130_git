@@ -1,20 +1,20 @@
 ** Random Test (9 tracks) **
-CART  0 on Indigo  track between junctions G and F
-CART  1 on Azure   track between junctions I and H
-CART  5 on Red     track between junctions A and B
-CART  7 on Green   track between junctions E and D
-CART 15 on Indigo  track between junctions F and G
-CART 16 on Red     track between junctions B and A
-CART 17 on Yellow  track between junctions D and C
-CART 12 on Azure   track between junctions H and I
-CART  9 on Red     track between junctions B and A
-CART  8 on Azure   track between junctions I and H
-CART  2 on Blue    track between junctions E and F
-CART 13 on Red     track between junctions A and B
-CART 14 on Green   track between junctions D and E
-CART  4 on Azure   track between junctions H and I
-CART  6 on Orange  track between junctions C and B
-CART 11 on Green   track between junctions E and D
-CART  3 on Violet  track between junctions G and H
-CART 10 on Orange  track between junctions C and B
-PASS All carts crossed safely in 5.91 seconds
+CART  0 on Red     track between junctions B and A
+CART  2 on Violet  track between junctions H and G
+CART  1 on Yellow  track between junctions D and C
+CART  7 on Blue    track between junctions E and F
+CART  6 on Yellow  track between junctions C and D
+CART 14 on Black   track between junctions A and I
+CART  5 on Indigo  track between junctions G and F
+CART  9 on Orange  track between junctions C and B
+CART 16 on Green   track between junctions E and D
+CART  3 on Black   track between junctions A and I
+CART 17 on Indigo  track between junctions G and F
+CART 13 on Orange  track between junctions B and C
+CART  4 on Green   track between junctions E and D
+CART 10 on Azure   track between junctions I and H
+CART 15 on Orange  track between junctions C and B
+CART  8 on Black   track between junctions A and I
+CART 12 on Black   track between junctions I and A
+CART 11 on Red     track between junctions B and A
+PASS All carts crossed safely in 7.28 seconds
