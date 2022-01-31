@@ -1,2 +1,4 @@
 FAIL
-No iterations found in output.
+Kernel panic in run: PANIC at ../../threads/lock.c:70 in lock_acquire(): assertion `lock != NULL' failed.
+Call stack: 0xc0029d26 0x7163615f
+Translation of call stack:

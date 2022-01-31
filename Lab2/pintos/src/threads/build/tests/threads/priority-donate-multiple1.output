@@ -1,4 +1,4 @@
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/Mp_b0iTsOC.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/VRdqXyFxLw.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -8,7 +8,7 @@ Kernel command line: -q run priority-donate-multiple1
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  439,091,200 loops/s.
+Calibrating timer...  419,430,400 loops/s.
 Boot complete.
 Executing 'priority-donate-multiple1':
 (priority-donate-multiple1) begin
@@ -20,8 +20,8 @@ Executing 'priority-donate-multiple1':
 (priority-donate-multiple1) Main thread should have priority 31.  Actual priority: 31.
 (priority-donate-multiple1) end
 Execution of 'priority-donate-multiple1' complete.
-Timer: 32 ticks
-Thread: 0 idle ticks, 32 kernel ticks, 0 user ticks
+Timer: 34 ticks
+Thread: 0 idle ticks, 34 kernel ticks, 0 user ticks
 Console: 918 characters output
 Keyboard: 0 keys pressed
 Powering off...

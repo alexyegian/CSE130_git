@@ -1,0 +1,28 @@
+==3743886== Memcheck, a memory error detector
+==3743886== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3743886== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3743886== Command: ./manpage
+==3743886== 
+==3743886== 
+==3743886== HEAP SUMMARY:
+==3743886==     in use at exit: 0 bytes in 0 blocks
+==3743886==   total heap usage: 8 allocs, 8 frees, 6,000 bytes allocated
+==3743886== 
+==3743886== All heap blocks were freed -- no leaks are possible
+==3743886== 
+==3743886== For lists of detected and suppressed errors, rerun with: -s
+==3743886== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3744928== Memcheck, a memory error detector
+==3744928== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3744928== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3744928== Command: ./cartman -s
+==3744928== 
+==3744928== 
+==3744928== HEAP SUMMARY:
+==3744928==     in use at exit: 0 bytes in 0 blocks
+==3744928==   total heap usage: 21 allocs, 21 frees, 17,774 bytes allocated
+==3744928== 
+==3744928== All heap blocks were freed -- no leaks are possible
+==3744928== 
+==3744928== For lists of detected and suppressed errors, rerun with: -s
+==3744928== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

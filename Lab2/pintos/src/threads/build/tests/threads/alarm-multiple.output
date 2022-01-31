@@ -1,4 +1,4 @@
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/IZNwpt7ssV.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/yj8USas_lZ.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -8,7 +8,7 @@ Kernel command line: -q run alarm-multiple
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  445,644,800 loops/s.
+Calibrating timer...  366,592,000 loops/s.
 Boot complete.
 Executing 'alarm-multiple':
 (alarm-multiple) begin
@@ -20,13 +20,13 @@ Executing 'alarm-multiple':
 (alarm-multiple) thread 0: duration=10, iteration=1, product=10
 (alarm-multiple) thread 0: duration=10, iteration=2, product=20
 (alarm-multiple) thread 1: duration=20, iteration=1, product=20
-(alarm-multiple) thread 2: duration=30, iteration=1, product=30
 (alarm-multiple) thread 0: duration=10, iteration=3, product=30
-(alarm-multiple) thread 3: duration=40, iteration=1, product=40
+(alarm-multiple) thread 2: duration=30, iteration=1, product=30
 (alarm-multiple) thread 0: duration=10, iteration=4, product=40
 (alarm-multiple) thread 1: duration=20, iteration=2, product=40
-(alarm-multiple) thread 4: duration=50, iteration=1, product=50
+(alarm-multiple) thread 3: duration=40, iteration=1, product=40
 (alarm-multiple) thread 0: duration=10, iteration=5, product=50
+(alarm-multiple) thread 4: duration=50, iteration=1, product=50
 (alarm-multiple) thread 0: duration=10, iteration=6, product=60
 (alarm-multiple) thread 1: duration=20, iteration=3, product=60
 (alarm-multiple) thread 2: duration=30, iteration=2, product=60
@@ -34,14 +34,14 @@ Executing 'alarm-multiple':
 (alarm-multiple) thread 1: duration=20, iteration=4, product=80
 (alarm-multiple) thread 3: duration=40, iteration=2, product=80
 (alarm-multiple) thread 2: duration=30, iteration=3, product=90
-(alarm-multiple) thread 4: duration=50, iteration=2, product=100
 (alarm-multiple) thread 1: duration=20, iteration=5, product=100
+(alarm-multiple) thread 4: duration=50, iteration=2, product=100
 (alarm-multiple) thread 1: duration=20, iteration=6, product=120
 (alarm-multiple) thread 2: duration=30, iteration=4, product=120
 (alarm-multiple) thread 3: duration=40, iteration=3, product=120
 (alarm-multiple) thread 1: duration=20, iteration=7, product=140
-(alarm-multiple) thread 4: duration=50, iteration=3, product=150
 (alarm-multiple) thread 2: duration=30, iteration=5, product=150
+(alarm-multiple) thread 4: duration=50, iteration=3, product=150
 (alarm-multiple) thread 3: duration=40, iteration=4, product=160
 (alarm-multiple) thread 2: duration=30, iteration=6, product=180
 (alarm-multiple) thread 3: duration=40, iteration=5, product=200
@@ -54,8 +54,8 @@ Executing 'alarm-multiple':
 (alarm-multiple) thread 4: duration=50, iteration=7, product=350
 (alarm-multiple) end
 Execution of 'alarm-multiple' complete.
-Timer: 589 ticks
-Thread: 0 idle ticks, 589 kernel ticks, 0 user ticks
-Console: 2954 characters output
+Timer: 575 ticks
+Thread: 550 idle ticks, 25 kernel ticks, 0 user ticks
+Console: 2955 characters output
 Keyboard: 0 keys pressed
 Powering off...

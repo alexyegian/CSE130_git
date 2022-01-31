@@ -4,4 +4,4 @@ tests/threads/alarm-priority.o: ../../tests/threads/alarm-priority.c \
  ../../lib/kernel/stdio.h ../../tests/threads/tests.h \
  ../../threads/init.h ../../threads/malloc.h ../../threads/semaphore.h \
  ../../lib/kernel/list.h ../../threads/thread.h ../../devices/timer.h \
- ../../lib/round.h
+ ../../lib/round.h ../../lib/stdlib.h

@@ -1,4 +1,4 @@
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/XRoUxjuNeU.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/NBip9IK_vh.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -8,10 +8,11 @@ Kernel command line: -q run priority-semaphore
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  439,091,200 loops/s.
+Calibrating timer...  412,467,200 loops/s.
 Boot complete.
 Executing 'priority-semaphore':
 (priority-semaphore) begin
+SET PRIORITY
 (priority-semaphore) Back in main thread.
 (priority-semaphore) Back in main thread.
 (priority-semaphore) Back in main thread.
@@ -24,8 +25,8 @@ Executing 'priority-semaphore':
 (priority-semaphore) Back in main thread.
 (priority-semaphore) end
 Execution of 'priority-semaphore' complete.
-Timer: 32 ticks
-Thread: 0 idle ticks, 32 kernel ticks, 0 user ticks
-Console: 827 characters output
+Timer: 25 ticks
+Thread: 0 idle ticks, 25 kernel ticks, 0 user ticks
+Console: 840 characters output
 Keyboard: 0 keys pressed
 Powering off...

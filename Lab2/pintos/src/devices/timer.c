@@ -53,6 +53,38 @@ timer_init (void)
   list_init(&timer_list);
 }
 
+
+void thread_pri_changed(struct thread *t){
+  printf("PRI CHANGE START\n");
+  int64_t total_ticks = t->wake_up_tick;
+  if(total_ticks == 0){
+    return;}
+  struct list_elem *insert_elem = list_end(&timer_list);
+  printf("PRI CHANGE LOOP WUL: %lld\n", total_ticks);
+  for(struct list_elem* x = list_begin(&timer_list); x != insert_elem; x = list_next(x)){
+    struct thread * hold = list_entry(x, struct thread, timer_elem);
+    if(hold->wake_up_tick == total_ticks){
+      printf("SAME TICK THIS PRI: %d\n", t->priority);
+        while(x!=insert_elem){
+          printf("X PRI: %d\n", hold->priority);
+          if(hold->priority <= t->priority){
+             printf("INSERT BEC PRIORITY\n");
+            insert_elem = x;
+            break;}
+          x = list_next(x);
+          hold = list_entry(x, struct thread, timer_elem);
+        }
+        break;
+    }
+    if( hold->wake_up_tick >= total_ticks){
+        insert_elem = x;
+        break;
+    }
+  }
+  printf("INSERT\n");
+  list_insert(insert_elem, &(t->timer_elem));
+  printf("INSERT DONE\n");
+}
 /* Calibrates loops_per_tick, used to implement brief delays. */
 void
 timer_calibrate (void) 
@@ -104,30 +136,6 @@ timer_elapsed (int64_t then)
 void
 timer_sleep (int64_t ticks) 
 {
-//  if(ticks <= 0){
-//    return;}
-//  struct timer_elem* elem = malloc(sizeof(struct timer_elem));
-//  struct elem_holder* holder = malloc(sizeof(struct elem_holder));
-//  struct thread * cur = thread_current();
-  
-//  int64_t start = timer_ticks();
-//  int64_t wake_up = start + ticks;
-//  elem->first = cur;
-//  elem->second = wake_up;
-//  holder->timer_el = *elem;
-//  struct list_elem *insert_elem = list_end(&timer_list);
-//  for(struct list_elem* x = list_begin(&timer_list); x != insert_elem; x = list_next(x)){
-//    struct elem_holder * hold = list_entry(x, struct elem_holder, el);
-//    if( hold->timer_el.second >= elem->second){
-//  	insert_elem = x;
-//        break;
-//    }
-//  }
-//  list_insert(insert_elem, &(holder->el));
-//  intr_disable();
-  
-//  thread_block();
-
 
 
   struct thread *cur_thread = thread_current();
@@ -138,16 +146,26 @@ timer_sleep (int64_t ticks)
   struct list_elem *insert_elem = list_end(&timer_list);
   for(struct list_elem* x = list_begin(&timer_list); x != insert_elem; x = list_next(x)){
     struct thread * hold = list_entry(x, struct thread, timer_elem);
+    if(hold->wake_up_tick == total_ticks){
+//	printf("SAME TICK THIS PRI: %d\n", cur_thread->priority);
+	while(x!=insert_elem){
+  //        printf("X PRI: %d\n", hold->priority);
+	  if(hold->priority <= cur_thread->priority){
+//	    printf("INSERT BEC PRIORITY\n");
+	    insert_elem = x;
+	    break;}
+	  x = list_next(x);
+	  hold = list_entry(x, struct thread, timer_elem);
+	}
+	break;
+    }    
     if( hold->wake_up_tick >= total_ticks){
-        insert_elem = x;
+	insert_elem = x;
         break;
     }
   }
   list_insert(insert_elem, &(cur_thread->timer_elem));
 
-// list_push_back(&timer_list, &(cur_thread->timer_elem));
-//    struct list_elem *e;
-//  enum intr_level old_level;
   intr_disable();
   thread_block();
   return;

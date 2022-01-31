@@ -15,5 +15,6 @@ Differences in `diff -u' format:
 - (priority-change) Thread 2 now lowering priority.
   (priority-change) Thread 2 should have just lowered its priority.
 - (priority-change) Thread 2 exiting.
++ SET PRIORITY
   (priority-change) Thread 2 should have just exited.
   (priority-change) end

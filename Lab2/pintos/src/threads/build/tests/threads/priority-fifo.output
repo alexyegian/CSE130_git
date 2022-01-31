@@ -1,4 +1,4 @@
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/ke9Rsq5K3f.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/6K2PA2q7PC.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -8,16 +8,31 @@ Kernel command line: -q run priority-fifo
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  443,187,200 loops/s.
+Calibrating timer...  426,803,200 loops/s.
 Boot complete.
 Executing 'priority-fifo':
 (priority-fifo) begin
 (priority-fifo) 16 threads will iterate 16 times in the same order each time.
 (priority-fifo) If the order varies then there is a bug.
+SET PRIORITY
+SET PRIORITY
 (priority-fifo) end
 Execution of 'priority-fifo' complete.
-Timer: 29 ticks
-Thread: 0 idle ticks, 29 kernel ticks, 0 user ticks
-Console: 517 characters output
-Keyboard: 0 keys pressed
-Powering off...
+TimerKernel PANIC at ../../threads/lock.c:70 in lock_acquire(): assertion `lock != NULL' failed.
+Call stack: 0xc0029d26 0x7163615fUnexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault Exception)
+Unexpected interrupt 0x0e (#PF Page-Fault ESimulation terminated due to kernel panic.

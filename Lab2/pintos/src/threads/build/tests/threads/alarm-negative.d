@@ -3,4 +3,4 @@ tests/threads/alarm-negative.o: ../../tests/threads/alarm-negative.c \
  ../../lib/stdbool.h ../../lib/stddef.h ../../lib/stdint.h \
  ../../lib/kernel/stdio.h ../../tests/threads/tests.h \
  ../../threads/malloc.h ../../threads/thread.h ../../lib/kernel/list.h \
- ../../devices/timer.h ../../lib/round.h
+ ../../devices/timer.h ../../lib/round.h ../../lib/stdlib.h

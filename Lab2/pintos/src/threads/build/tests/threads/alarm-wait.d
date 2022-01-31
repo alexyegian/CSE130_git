@@ -4,4 +4,4 @@ tests/threads/alarm-wait.o: ../../tests/threads/alarm-wait.c \
  ../../lib/kernel/stdio.h ../../tests/threads/tests.h \
  ../../threads/init.h ../../threads/malloc.h ../../threads/lock.h \
  ../../lib/kernel/list.h ../../threads/semaphore.h ../../threads/thread.h \
- ../../devices/timer.h ../../lib/round.h
+ ../../devices/timer.h ../../lib/round.h ../../lib/stdlib.h

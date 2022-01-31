@@ -1,4 +1,4 @@
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/o6mTgwAcK7.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/CvS68EqMUZ.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -8,35 +8,20 @@ Kernel command line: -q run priority-donate-lower
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  422,707,200 loops/s.
+Calibrating timer...  404,684,800 loops/s.
 Boot complete.
 Executing 'priority-donate-lower':
 (priority-donate-lower) begin
 (priority-donate-lower) Main thread should have priority 41.  Actual priority: 31.
 (priority-donate-lower) Lowering base priority...
+SET PRIORITY
 (priority-donate-lower) Main thread should have priority 41.  Actual priority: 21.
 (priority-donate-lower) acquire must already have finished.
 (priority-donate-lower) Main thread should have priority 21.  Actual priority: 21.
-(priority-donate-lower) Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-(priority-donate-lower) acquire: got the lock
-Kernel PANIC at ../../threads/lock.c:87 in lock_release(): assertion `lock_held_by_current_thread (lock)' failed.
-Call stack: 0xc00298a6 0x6c65725fUnexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault ESimulation terminated due to kernel panic.
+(priority-donate-lower) end
+Execution of 'priority-donate-lower' complete.
+Timer: 26 ticks
+Thread: 0 idle ticks, 26 kernel ticks, 0 user ticks
+Console: 794 characters output
+Keyboard: 0 keys pressed
+Powering off...
