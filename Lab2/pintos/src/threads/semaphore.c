@@ -45,7 +45,7 @@ void
 semaphore_init (struct semaphore *sema, unsigned value) 
 {
   ASSERT (sema != NULL);
-
+//  printf("SEMA INIT VAL: %d", value);
   sema->value = value;
   list_init (&sema->waiters);
 }
@@ -64,7 +64,6 @@ semaphore_down (struct semaphore *sema)
 
   ASSERT (sema != NULL);
   ASSERT (!intr_context ());
-
   old_level = intr_disable ();
   while (sema->value == 0) 
     {

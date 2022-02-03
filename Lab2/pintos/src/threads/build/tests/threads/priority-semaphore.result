@@ -27,7 +27,6 @@ Acceptable output:
 Differences in `diff -u' format:
   (priority-semaphore) begin
 - (priority-semaphore) Thread priority 30 woke up.
-+ SET PRIORITY
   (priority-semaphore) Back in main thread.
 - (priority-semaphore) Thread priority 29 woke up.
   (priority-semaphore) Back in main thread.

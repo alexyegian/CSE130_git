@@ -3,5 +3,5 @@ tests/threads/priority-fifo.o: ../../tests/threads/priority-fifo.c \
  ../../lib/stdbool.h ../../lib/stddef.h ../../lib/stdint.h \
  ../../lib/kernel/stdio.h ../../tests/threads/tests.h \
  ../../threads/init.h ../../devices/timer.h ../../lib/round.h \
- ../../lib/stdlib.h ../../threads/thread.h ../../lib/kernel/list.h \
- ../../threads/malloc.h ../../threads/lock.h ../../threads/semaphore.h
+ ../../lib/stdlib.h ../../threads/malloc.h ../../threads/lock.h \
+ ../../lib/kernel/list.h ../../threads/semaphore.h ../../threads/thread.h

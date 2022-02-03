@@ -5,5 +5,4 @@ threads/thread.o: ../../threads/thread.c ../../threads/thread.h \
  ../../lib/string.h ../../threads/flags.h ../../threads/interrupt.h \
  ../../threads/intr-stubs.h ../../threads/palloc.h ../../threads/switch.h \
  ../../threads/semaphore.h ../../threads/lock.h ../../threads/vaddr.h \
- ../../threads/loader.h ../../devices/timer.h ../../lib/round.h \
- ../../lib/stdlib.h
+ ../../threads/loader.h

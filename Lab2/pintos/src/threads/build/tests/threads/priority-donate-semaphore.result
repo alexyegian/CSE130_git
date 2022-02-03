@@ -13,7 +13,7 @@ Acceptable output:
   (priority-donate-semaphore) end
 Differences in `diff -u' format:
   (priority-donate-semaphore) begin
-- (priority-donate-semaphore) Thread L acquired lock.
+  (priority-donate-semaphore) Thread L acquired lock.
 - (priority-donate-semaphore) Thread L downed semaphore.
 - (priority-donate-semaphore) Thread H acquired lock.
 - (priority-donate-semaphore) Thread H finished.

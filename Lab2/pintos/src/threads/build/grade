@@ -1,4 +1,4 @@
-TOTAL TESTING SCORE: 0.0%
+TOTAL TESTING SCORE: 40.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -7,12 +7,12 @@ SUMMARY BY TEST SET
 Test Set                                      Pts Max  % Ttl  % Max
 --------------------------------------------- --- --- ------ ------
 tests/threads/Rubric.alarm                    100/100   0.0%/  0.0%
-tests/threads/Rubric.basic                      0/ 40   0.0%/ 40.0%
+tests/threads/Rubric.basic                     40/ 40  40.0%/ 40.0%
 tests/threads/Rubric.advanced                   0/ 30   0.0%/ 30.0%
 tests/threads/Rubric.stretch                    0/ 40   0.0%/ 20.0%
 tests/threads/Rubric.extreme                    0/ 10   0.0%/ 10.0%
 --------------------------------------------- --- --- ------ ------
-Total                                                   0.0%/100.0%
+Total                                                  40.0%/100.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -31,14 +31,14 @@ Functionality and robustness of alarm clock (tests/threads/Rubric.alarm):
 	    100/100 points subtotal
 
 Basic: Priority based ready queue (tests/threads/Rubric.basic):
-	  ** 0/20 tests/threads/alarm-priority
-	  ** 0/10 tests/threads/priority-preempt
-	  ** 0/ 5 tests/threads/priority-change
-	  ** 0/ 5 tests/threads/priority-fifo
+	    20/20 tests/threads/alarm-priority
+	    10/10 tests/threads/priority-preempt
+	     5/ 5 tests/threads/priority-change
+	     5/ 5 tests/threads/priority-fifo
 
 	- Section summary.
-	      0/  4 tests passed
-	      0/ 40 points subtotal
+	      4/  4 tests passed
+	     40/ 40 points subtotal
 
 Advanced: Priority waiting for locks, semaphores, and condition variables (tests/threads/Rubric.advanced):
 	  ** 0/15 tests/threads/priority-semaphore

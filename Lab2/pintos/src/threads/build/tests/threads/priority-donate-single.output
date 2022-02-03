@@ -1,4 +1,4 @@
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/B6YPLrkirM.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/QzamXc96Ff.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -8,16 +8,16 @@ Kernel command line: -q run priority-donate-single
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  392,396,800 loops/s.
+Calibrating timer...  445,644,800 loops/s.
 Boot complete.
 Executing 'priority-donate-single':
 (priority-donate-single) begin
-SET PRIORITY
+(priority-donate-single) Thread C finished.
 (priority-donate-single) Thread A finished.
 (priority-donate-single) end
 Execution of 'priority-donate-single' complete.
-Timer: 25 ticks
-Thread: 0 idle ticks, 25 kernel ticks, 0 user ticks
-Console: 484 characters output
+Timer: 31 ticks
+Thread: 0 idle ticks, 32 kernel ticks, 0 user ticks
+Console: 515 characters output
 Keyboard: 0 keys pressed
 Powering off...

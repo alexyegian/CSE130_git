@@ -3,4 +3,4 @@ devices/serial.o: ../../devices/serial.c ../../devices/serial.h \
  ../../lib/stdbool.h ../../devices/intq.h ../../threads/interrupt.h \
  ../../threads/lock.h ../../lib/kernel/list.h ../../lib/stddef.h \
  ../../threads/semaphore.h ../../devices/timer.h ../../lib/round.h \
- ../../lib/stdlib.h ../../threads/thread.h ../../threads/io.h
+ ../../lib/stdlib.h ../../threads/io.h ../../threads/thread.h

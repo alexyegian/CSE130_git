@@ -12,7 +12,6 @@
 #include "threads/semaphore.h"
 #include "threads/lock.h"
 #include "threads/vaddr.h"
-#include "devices/timer.h"
 #ifdef USERPROG
 #include "userprog/process.h"
 #endif
@@ -72,7 +71,7 @@ static void *alloc_frame (struct thread *, size_t size);
 static void schedule (void);
 void thread_schedule_tail (struct thread *prev);
 static tid_t allocate_tid (void);
-void schedule2(struct thread* t);
+
 /* Initializes the threading system by transforming the code
    that's currently running into a thread.  This can't work in
    general and it is possible in this case only because loader.S
@@ -199,10 +198,11 @@ thread_create (const char *name, int priority,
   sf = alloc_frame (t, sizeof *sf);
   sf->eip = switch_entry;
   sf->ebp = 0;
-
+  thread_unblock(t);
+  if(priority > thread_current()->priority){
+ //   printf("YIELD\n");
+    thread_yield();}
   /* Add to run queue. */
-  thread_unblock (t);
-
   return tid;
 }
 
@@ -217,11 +217,9 @@ thread_block (void)
 {
   ASSERT (!intr_context ());
   ASSERT (intr_get_level () == INTR_OFF);
-//  printf("BLOCK CURRENT\n");
+
   thread_current ()->status = THREAD_BLOCKED;
-//  printf("SCHEDULE\n");
   schedule ();
-//  printf("SCHEDULE DONE\n");
 }
 
 /* Transitions a blocked thread T to the ready-to-run state.
@@ -235,58 +233,35 @@ thread_block (void)
 void
 thread_unblock (struct thread *t) 
 {
-
   enum intr_level old_level;
 
   ASSERT (is_thread (t));
 
   old_level = intr_disable ();
   ASSERT (t->status == THREAD_BLOCKED);
-  struct thread * cur_thread = thread_current();
-//  printf("UNBLOCK: PRI: %d\n", t->priority);
-  if(cur_thread->priority < t->priority){
-//    printf("CUR PRI: %d T PRI: %d\n", cur_thread->priority, t->priority);
-    list_push_back(&ready_list, &t->sharedelem);
-    t->status = THREAD_READY;
-    printf("PREEMPT T STAT: %d CUR: %d\n", t->status, cur_thread->status);
-//    thread_block();
-//    printf("PREEMPT DONE T STAT: %d CUR: %d\n", t->status, cur_thread->status);
-//    cur_thread->status = THREAD_READY;
-//    list_push_back(&ready_list, &cur_thread->sharedelem);
-    //intr_set_level(old_level);
-//    thread_block();
-    struct thread * prev = switch_threads (cur_thread, t);
-    thread_schedule_tail (prev);
- 
-    printf("T STAT: %d CUR: %d\n", t->status, cur_thread->status);
-//    t = cur_thread;
-   // prev = switch_threads (cur, next);
-   // thread_schedule_tail (prev);
-
-//    printf("PREEMPT DONE T STAT: %d\n", t->status);
-    return;
+  struct list_elem *insert_elem = list_end(&ready_list);
+  for(struct list_elem* x = list_begin(&ready_list); x != insert_elem; x = list_next(x)){
+    struct thread * hold = list_entry(x, struct thread, sharedelem);
+    if( hold->priority < t->priority){
+        insert_elem = x;
+        break;
+    }
   }
-//  printf("DO NOT PREEMPT\n");
-  list_push_back (&ready_list, &t->sharedelem);
-  
-  
-//  struct list_elem* x = list_begin(&ready_list);
-//  struct thread* hold = list_entry(x, struct thread, sharedelem);
-  
-//  t->status = THREAD_READY;
-//  intr_set_level(old_level);
+//  printf("INSERT\n");
+  list_insert(insert_elem, &(t->sharedelem));
 
 
+//  insert_ordered_thread_priority(ready_list, t);
+
+
+//  for(struct list_elem* x = list_begin(&ready_list); x != insert_elem; x = list_next(x)){
+//    struct thread * hold = list_entry(x, struct thread, sharedelem);
+//    printf("THREAD PRI: %d\n", hold->priority);
+//  }
+
+//  printf("INSERT DONE\n");
+//  list_push_back (&ready_list, &t->sharedelem);
   t->status = THREAD_READY;
-
-
-
-//  ASSERT (!intr_context ());
-//  ASSERT (intr_get_level () == INTR_OFF);
-
-
-
-  printf("DONE\n");
   intr_set_level (old_level);
 }
 
@@ -310,7 +285,6 @@ thread_current (void)
      have overflowed its stack.  Each thread has less than 4 kB
      of stack, so a few big automatic arrays or moderate
      recursion can cause stack overflow. */
-//  printf("CUR THREAD STAT: %d PRI: %d\n", t->status, t->priority);
   ASSERT (is_thread (t));
   ASSERT (t->status == THREAD_RUNNING);
 
@@ -356,12 +330,40 @@ thread_yield (void)
   ASSERT (!intr_context ());
 
   old_level = intr_disable ();
-  if (cur != idle_thread) 
-    list_push_back (&ready_list, &cur->sharedelem);
+  if (cur != idle_thread){
+  struct list_elem *insert_elem = list_end(&ready_list);
+  for(struct list_elem* x = list_begin(&ready_list); x != insert_elem; x = list_next(x)){
+    struct thread * hold = list_entry(x, struct thread, sharedelem);
+    if( hold->priority < cur->priority){
+        insert_elem = x;
+       break;
+    }
+  }
+  list_insert(insert_elem, &(cur->sharedelem));
+  
+//  insert_ordered_thread_priority(ready_list, cur);
+//    list_push_back (&ready_list, &cur->sharedelem);
+  }
   cur->status = THREAD_READY;
   schedule ();
   intr_set_level (old_level);
 }
+
+
+
+//void insert_ordered_thread_priority(struct list ls, struct thread * t){
+//    struct list_elem *insert_elem = list_end(&ls);
+//    for(struct list_elem* x = list_begin(&ls); x != insert_elem; x = list_next(x)){
+//      struct thread * hold = list_entry(x, struct thread, sharedelem);
+//      if( hold->priority < t->priority){
+//        insert_elem = x;
+//        break;
+//     }
+//    }
+//    list_insert(insert_elem, &(t->sharedelem));
+//}
+
+
 
 /* Invoke function 'func' on all threads, passing along 'aux'.
    This function must be called with interrupts off. */
@@ -384,20 +386,8 @@ thread_foreach (thread_action_func *func, void *aux)
 void
 thread_set_priority (int new_priority) 
 {
-  printf("SET PRIORITY\n");
   thread_current ()->priority = new_priority;
-//  struct thread *cur_thread = thread_current();
-//  struct list_elem *insert_elem = list_end(&ready_list);
-//  for(struct list_elem* x = list_begin(&ready_list); x != insert_elem; x = list_next(x)){
-//    struct thread* hold = list_entry(x, struct thread, sharedelem);
-//    if( hold->priority <= cur_thread->priority){
-//        insert_elem = x;
-//        break;
-//    }
-//  }
-//  list_insert(insert_elem, &(cur_thread->timer_elem));
-
-//  thread_pri_changed(thread_current());
+  thread_yield();
 }
 
 /* Returns the current thread's priority. */
@@ -562,7 +552,7 @@ next_thread_to_run (void)
    tables, and, if the previous thread is dying, destroying it.
 
    At this function's invocation, we just switched from thread
-   PREV, the new thread is alrea/dy running, and interrupts are
+   PREV, the new thread is already running, and interrupts are
    still disabled.  This function is normally invoked by
    thread_schedule() as its final action before returning, but
    the first time a thread is scheduled it is called by
@@ -580,6 +570,7 @@ thread_schedule_tail (struct thread *prev)
   struct thread *cur = running_thread ();
   
   ASSERT (intr_get_level () == INTR_OFF);
+
   /* Mark us as running. */
   cur->status = THREAD_RUNNING;
 
@@ -601,7 +592,6 @@ thread_schedule_tail (struct thread *prev)
       ASSERT (prev != cur);
       palloc_free_page (prev);
     }
-//  printf("TAIL CUR PRI: %d CUR STAT: %d\n", cur->priority, cur->status);
 }
 
 /* Schedules a new process.  At entry, interrupts must be off and
@@ -625,26 +615,7 @@ schedule (void)
   if (cur != next)
     prev = switch_threads (cur, next);
   thread_schedule_tail (prev);
-//  printf("SWITCH CUR PRI: %d STAT: %d NEXT: %d STAT: %d\n", cur->priority, cur->status, next->priority, next->status);
 }
-
-void schedule2(struct thread * t)
-{
-  struct thread *cur = running_thread ();
-  struct thread *next = t;
-  struct thread *prev = NULL;
-
-  printf("RUN STAT: %d RUN PRI: %d\n", cur->status, cur->priority);
-  ASSERT (intr_get_level () == INTR_OFF);
-  ASSERT (cur->status != THREAD_RUNNING);
-  ASSERT (is_thread (next));
-
-  if (cur != next)
-    prev = switch_threads (cur, next);
-  thread_schedule_tail (prev);
-}
-
-
 
 /* Returns a tid to use for a new thread. */
 static tid_t

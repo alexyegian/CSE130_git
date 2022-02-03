@@ -53,38 +53,6 @@ timer_init (void)
   list_init(&timer_list);
 }
 
-
-void thread_pri_changed(struct thread *t){
-  printf("PRI CHANGE START\n");
-  int64_t total_ticks = t->wake_up_tick;
-  if(total_ticks == 0){
-    return;}
-  struct list_elem *insert_elem = list_end(&timer_list);
-  printf("PRI CHANGE LOOP WUL: %lld\n", total_ticks);
-  for(struct list_elem* x = list_begin(&timer_list); x != insert_elem; x = list_next(x)){
-    struct thread * hold = list_entry(x, struct thread, timer_elem);
-    if(hold->wake_up_tick == total_ticks){
-      printf("SAME TICK THIS PRI: %d\n", t->priority);
-        while(x!=insert_elem){
-          printf("X PRI: %d\n", hold->priority);
-          if(hold->priority <= t->priority){
-             printf("INSERT BEC PRIORITY\n");
-            insert_elem = x;
-            break;}
-          x = list_next(x);
-          hold = list_entry(x, struct thread, timer_elem);
-        }
-        break;
-    }
-    if( hold->wake_up_tick >= total_ticks){
-        insert_elem = x;
-        break;
-    }
-  }
-  printf("INSERT\n");
-  list_insert(insert_elem, &(t->timer_elem));
-  printf("INSERT DONE\n");
-}
 /* Calibrates loops_per_tick, used to implement brief delays. */
 void
 timer_calibrate (void) 
@@ -137,7 +105,6 @@ void
 timer_sleep (int64_t ticks) 
 {
 
-
   struct thread *cur_thread = thread_current();
   int64_t total_ticks = timer_ticks () + ticks;
   if(ticks <= 0){
@@ -171,7 +138,6 @@ timer_sleep (int64_t ticks)
   return;
 
 }
-
 /* Sleeps for approximately MS milliseconds.  Interrupts must be
    turned on. */
 void

@@ -4,4 +4,3 @@ pass tests/threads/alarm-simultaneous
 pass tests/threads/alarm-zero
 pass tests/threads/alarm-negative
 pass tests/threads/alarm-efficient
-pass tests/threads/alarm-efficient
