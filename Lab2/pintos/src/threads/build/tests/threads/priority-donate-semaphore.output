@@ -1,4 +1,4 @@
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/uCIJucwiAf.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/Xi7fNHywWE.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -8,16 +8,17 @@ Kernel command line: -q run priority-donate-semaphore
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  428,441,600 loops/s.
+Calibrating timer...  36,044,800 loops/s.
 Boot complete.
 Executing 'priority-donate-semaphore':
 (priority-donate-semaphore) begin
 (priority-donate-semaphore) Thread L acquired lock.
+(priority-donate-semaphore) Thread M finished.
 (priority-donate-semaphore) Main thread finished.
 (priority-donate-semaphore) end
 Execution of 'priority-donate-semaphore' complete.
-Timer: 30 ticks
-Thread: 0 idle ticks, 31 kernel ticks, 0 user ticks
-Console: 544 characters output
+Timer: 27 ticks
+Thread: 0 idle ticks, 27 kernel ticks, 0 user ticks
+Console: 590 characters output
 Keyboard: 0 keys pressed
 Powering off...

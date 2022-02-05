@@ -55,7 +55,7 @@ static long long user_ticks;    /* # of timer ticks in user programs. */
 #define TIME_SLICE 4            /* # of timer ticks to give each thread. */
 static unsigned thread_ticks;   /* # of timer ticks since last yield. */
 
-/* If false (default), use round-robincheduler.
+/* If false (default), use round-robin scheduler.
    If true, use multi-level feedback queue scheduler.
    Controlled by kernel command-line option "-o mlfqs". */
 bool thread_mlfqs;
@@ -198,11 +198,10 @@ thread_create (const char *name, int priority,
   sf = alloc_frame (t, sizeof *sf);
   sf->eip = switch_entry;
   sf->ebp = 0;
-  thread_unblock(t);
-//  if(priority > thread_current()->priority){
- //   printf("YIELD\n");
-//     thread_yield();}
+
   /* Add to run queue. */
+  thread_unblock (t);
+
   return tid;
 }
 
@@ -234,13 +233,13 @@ void
 thread_unblock (struct thread *t) 
 {
   enum intr_level old_level;
+
   ASSERT (is_thread (t));
+
   old_level = intr_disable ();
   ASSERT (t->status == THREAD_BLOCKED);
-  insert_ordered_thread_priority(&ready_list, t);
+  list_push_back (&ready_list, &t->sharedelem);
   t->status = THREAD_READY;
-  if(t->priority > thread_current()->priority && thread_current() != idle_thread){
-    thread_yield();}
   intr_set_level (old_level);
 }
 
@@ -309,46 +308,12 @@ thread_yield (void)
   ASSERT (!intr_context ());
 
   old_level = intr_disable ();
-  if (cur != idle_thread){
-//    printf("CUR NOT IDLE PRI: %d\n", cur->priority);
-//  struct list_elem *insert_elem = list_end(&ready_list);
-//  for(struct list_elem* x = list_begin(&ready_list); x != insert_elem; x = list_next(x)){
-//    struct thread * hold = list_entry(x, struct thread, sharedelem);
-//    if( hold->priority < cur->priority){
-//        insert_elem = x;
-//       break;
-//    }
-//  }
-//  list_insert(insert_elem, &(cur->sharedelem));
-  
-  insert_ordered_thread_priority(&ready_list, cur);
- //   struct list_elem *end = list_end(&ready_list);
- //   for(struct list_elem * beg = list_begin(&ready_list); beg!=end; beg = list_next(beg)){
- //     struct thread* g = list_entry(beg, struct thread, sharedelem);
-//      printf("YIELD PRI: %d\n", g->priority);}
-//    list_push_back (&ready_list, &cur->sharedelem);
-  }
+  if (cur != idle_thread) 
+    list_push_back (&ready_list, &cur->sharedelem);
   cur->status = THREAD_READY;
-//  printf("RESCHEDULE\n");
   schedule ();
   intr_set_level (old_level);
 }
-
-
-
-void insert_ordered_thread_priority(struct list *ls, struct thread * t){
-    struct list_elem *insert_elem = list_end(ls);
-    for(struct list_elem* x = list_begin(ls); x != insert_elem; x = list_next(x)){
-      struct thread * hold = list_entry(x, struct thread, sharedelem);
-      if( hold->priority < t->priority){
-        insert_elem = x;
-        break;
-     }
-    }
-    list_insert(insert_elem, &(t->sharedelem));
-}
-
-
 
 /* Invoke function 'func' on all threads, passing along 'aux'.
    This function must be called with interrupts off. */
@@ -372,7 +337,6 @@ void
 thread_set_priority (int new_priority) 
 {
   thread_current ()->priority = new_priority;
-  thread_yield();
 }
 
 /* Returns the current thread's priority. */

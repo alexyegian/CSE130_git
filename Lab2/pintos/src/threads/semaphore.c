@@ -45,7 +45,7 @@ void
 semaphore_init (struct semaphore *sema, unsigned value) 
 {
   ASSERT (sema != NULL);
-//  printf("SEMA INIT VAL: %d", value);
+
   sema->value = value;
   list_init (&sema->waiters);
 }
@@ -64,15 +64,26 @@ semaphore_down (struct semaphore *sema)
 
   ASSERT (sema != NULL);
   ASSERT (!intr_context ());
+
   old_level = intr_disable ();
+//  sema->value--;
   while (sema->value == 0) 
     {
-      list_push_back (&sema->waiters, &thread_current ()->sharedelem);
+//      printf("INSERT: %d\n", thread_current()->priority);
+      insert_ordered_thread_priority(&sema->waiters, thread_current());
+//      list_push_back (&sema->waiters, &thread_current ()->sharedelem);
+//      struct list_elem* end = list_end(&sema->waiters);
+//      for(struct list_elem* beg = list_begin(&sema->waiters); beg!=end; beg = list_next(beg)){
+//	struct thread * t = list_entry(beg, struct thread, sharedelem);
+ //       printf("ELEM PRI: %d\n", t->priority);}
       thread_block ();
     }
   sema->value--;
   intr_set_level (old_level);
 }
+
+
+
 
 /* Up or "V" operation on a semaphore.  Increments SEMA's value
    and wakes up one thread of those waiting for SEMA, if any.
@@ -81,14 +92,37 @@ semaphore_down (struct semaphore *sema)
 void
 semaphore_up (struct semaphore *sema) 
 {
+//  if(list_empty(&sema->waiters)){
+//    printf("WAITERS EMPTY\n");
+//  }
   enum intr_level old_level;
 
   ASSERT (sema != NULL);
-
   old_level = intr_disable ();
-  if (!list_empty (&sema->waiters)) 
-    thread_unblock (list_entry (list_pop_front (&sema->waiters),
-                                struct thread, sharedelem));
+//  sema->value++;
+  struct thread * t;
+//  printf("SEMA UP\n");
   sema->value++;
+  if (!list_empty (&sema->waiters)) {
+//    printf("SEMA UNBLOCK THREAD\n");
+    t = list_entry(list_pop_front(&sema->waiters), struct thread, sharedelem);
+//    printf("CUR PRI: %d UNBLOCKING PRI: %d\n",thread_current()->priority, t->priority);
+//    struct list_elem* end = list_end(&sema->waiters);
+//    for(struct list_elem* beg = list_begin(&sema->waiters); beg!=end; beg = list_next(beg)){
+//        struct thread * g = list_entry(beg, struct thread, sharedelem);
+//        printf("UP ELEM PRI: %d\n", g->priority);} 
+    thread_unblock(t);
+//    printf("UNBLOCKED\n");
+//    printf("CUR PRI: %d UNBLOCKING PRI: %d\n", thread_current()->priority, t->priority);
+//    thread_unblock (list_entry (list_pop_front (&sema->waiters), struct thread, sharedelem));
+//    if(t->priority > thread_current()->priority){
+//      thread_yield();}
+  }
+//  else{
+//    printf("NO THREADS\n");}
+//  sema->value++;
   intr_set_level (old_level);
+//  if(t->priority > thread_current()->priority){
+    //printf("SEMA YIELD\n");
+//    thread_yield();}
 }

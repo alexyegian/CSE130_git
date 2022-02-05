@@ -143,5 +143,5 @@ int thread_get_nice(void);
 void thread_set_nice(int);
 int thread_get_recent_cpu(void);
 int thread_get_load_avg(void);
-//void insert_ordered_thread_priority(struct list ls, struct thread * t);
+void insert_ordered_thread_priority(struct list* ls, struct thread* t);
 #endif /* threads/thread.h */

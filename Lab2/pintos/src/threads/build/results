@@ -15,7 +15,7 @@ FAIL tests/threads/priority-donate-semaphore
 FAIL tests/threads/priority-donate-condvar
 pass tests/threads/priority-fifo
 pass tests/threads/priority-preempt
-FAIL tests/threads/priority-semaphore
-FAIL tests/threads/priority-condvar
+pass tests/threads/priority-semaphore
+pass tests/threads/priority-condvar
 FAIL tests/threads/priority-donate-chain
 pass tests/threads/alarm-efficient

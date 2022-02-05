@@ -1,4 +1,4 @@
-TOTAL TESTING SCORE: 40.0%
+TOTAL TESTING SCORE: 70.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -8,11 +8,11 @@ Test Set                                      Pts Max  % Ttl  % Max
 --------------------------------------------- --- --- ------ ------
 tests/threads/Rubric.alarm                    100/100   0.0%/  0.0%
 tests/threads/Rubric.basic                     40/ 40  40.0%/ 40.0%
-tests/threads/Rubric.advanced                   0/ 30   0.0%/ 30.0%
+tests/threads/Rubric.advanced                  30/ 30  30.0%/ 30.0%
 tests/threads/Rubric.stretch                    0/ 40   0.0%/ 20.0%
 tests/threads/Rubric.extreme                    0/ 10   0.0%/ 10.0%
 --------------------------------------------- --- --- ------ ------
-Total                                                  40.0%/100.0%
+Total                                                  70.0%/100.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -41,12 +41,12 @@ Basic: Priority based ready queue (tests/threads/Rubric.basic):
 	     40/ 40 points subtotal
 
 Advanced: Priority waiting for locks, semaphores, and condition variables (tests/threads/Rubric.advanced):
-	  ** 0/15 tests/threads/priority-semaphore
-	  ** 0/15 tests/threads/priority-condvar
+	    15/15 tests/threads/priority-semaphore
+	    15/15 tests/threads/priority-condvar
 
 	- Section summary.
-	      0/  2 tests passed
-	      0/ 30 points subtotal
+	      2/  2 tests passed
+	     30/ 30 points subtotal
 
 Stretch: Single level priority donation, including multiple donations (tests/threads/Rubric.stretch):
 	  ** 0/10 tests/threads/priority-donate-single
