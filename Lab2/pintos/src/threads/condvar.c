@@ -82,14 +82,6 @@ void condvar_wait(struct condvar *cond, struct lock *lock)
 
   struct list_elem * end = list_end(&cond->waiters);
   for(struct list_elem * el = list_begin(&cond->waiters); el != end; el = list_next(el)){
- //   struct semaphore_elem * new_sem = list_entry(el, struct semaphore_elem, sharedelem);
- //   struct semaphore sem = new_sem->semaphore;
- //   struct list_elem * sema_el = list_front(&(sem.waiters));
-  //  struct thread * new_t = list_entry(sema_el, struct thread, sharedelem);
-
-//    struct thread * other_t = list_entry(( list_front(&(  ( (  list_entry(el, struct semaphore_elem, sharedelem) )->semaphore)  .waiters)) ) , struct thread, sharedelem);
-
-
     if(thread_current()->priority > (list_entry((list_front(&(((list_entry(el, struct semaphore_elem, sharedelem) )->semaphore).waiters))), struct thread, sharedelem))->priority){
       end = el;
       break;}

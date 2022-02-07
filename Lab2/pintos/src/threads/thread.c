@@ -199,10 +199,6 @@ thread_create (const char *name, int priority,
   sf->eip = switch_entry;
   sf->ebp = 0;
   thread_unblock(t);
-//  if(priority > thread_current()->priority){
- //   printf("YIELD\n");
-//     thread_yield();}
-  /* Add to run queue. */
   return tid;
 }
 
@@ -310,26 +306,9 @@ thread_yield (void)
 
   old_level = intr_disable ();
   if (cur != idle_thread){
-//    printf("CUR NOT IDLE PRI: %d\n", cur->priority);
-//  struct list_elem *insert_elem = list_end(&ready_list);
-//  for(struct list_elem* x = list_begin(&ready_list); x != insert_elem; x = list_next(x)){
-//    struct thread * hold = list_entry(x, struct thread, sharedelem);
-//    if( hold->priority < cur->priority){
-//        insert_elem = x;
-//       break;
-//    }
-//  }
-//  list_insert(insert_elem, &(cur->sharedelem));
-  
-  insert_ordered_thread_priority(&ready_list, cur);
- //   struct list_elem *end = list_end(&ready_list);
- //   for(struct list_elem * beg = list_begin(&ready_list); beg!=end; beg = list_next(beg)){
- //     struct thread* g = list_entry(beg, struct thread, sharedelem);
-//      printf("YIELD PRI: %d\n", g->priority);}
-//    list_push_back (&ready_list, &cur->sharedelem);
+    insert_ordered_thread_priority(&ready_list, cur);
   }
   cur->status = THREAD_READY;
-//  printf("RESCHEDULE\n");
   schedule ();
   intr_set_level (old_level);
 }
