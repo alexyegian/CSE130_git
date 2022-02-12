@@ -1,183 +1,170 @@
-==663901== Memcheck, a memory error detector
-==663901== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==663901== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==663901== Command: ./scheduler -t 4 -v --fcfs
-==663901== 
-==663901== 
-==663901== HEAP SUMMARY:
-==663901==     in use at exit: 2,032 bytes in 84 blocks
-==663901==   total heap usage: 243 allocs, 159 frees, 21,142 bytes allocated
-==663901== 
-==663901== 8 bytes in 1 blocks are still reachable in loss record 1 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10EA82: queue_create (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment4/scheduler)
-==663901==    by 0x1092E1: scheduler (scheduler.c:47)
-==663901==    by 0x10B248: start (start.c:66)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 8 bytes in 1 blocks are still reachable in loss record 2 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10EA82: queue_create (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment4/scheduler)
-==663901==    by 0x1092F2: scheduler (scheduler.c:48)
-==663901==    by 0x10B248: start (start.c:66)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 8 bytes in 1 blocks are still reachable in loss record 3 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10EA82: queue_create (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment4/scheduler)
-==663901==    by 0x109303: scheduler (scheduler.c:49)
-==663901==    by 0x10B248: start (start.c:66)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 8 bytes in 1 blocks are still reachable in loss record 4 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10EA82: queue_create (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment4/scheduler)
-==663901==    by 0x109314: scheduler (scheduler.c:50)
-==663901==    by 0x10B248: start (start.c:66)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 8 bytes in 1 blocks are still reachable in loss record 5 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10EA82: queue_create (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment4/scheduler)
-==663901==    by 0x109325: scheduler (scheduler.c:51)
-==663901==    by 0x10B248: start (start.c:66)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 8 bytes in 1 blocks are still reachable in loss record 6 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10EA82: queue_create (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment4/scheduler)
-==663901==    by 0x109336: scheduler (scheduler.c:52)
-==663901==    by 0x10B248: start (start.c:66)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 16 bytes in 1 blocks are still reachable in loss record 7 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10CC8E: create_job_scheduler (job_scheduler.c:92)
-==663901==    by 0x10B136: start (start.c:44)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 16 bytes in 1 blocks are still reachable in loss record 8 of 24
-==663901==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x109E04: _create (harness.c:49)
-==663901==    by 0x109FCD: h_set_processes (harness.c:99)
-==663901==    by 0x10B18D: start (start.c:50)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 16 bytes in 1 blocks are still reachable in loss record 9 of 24
-==663901==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x109E32: _create (harness.c:52)
-==663901==    by 0x109FCD: h_set_processes (harness.c:99)
-==663901==    by 0x10B18D: start (start.c:50)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 16 bytes in 1 blocks are still reachable in loss record 10 of 24
-==663901==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x109E60: _create (harness.c:55)
-==663901==    by 0x109FCD: h_set_processes (harness.c:99)
-==663901==    by 0x10B18D: start (start.c:50)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 16 bytes in 1 blocks are still reachable in loss record 11 of 24
-==663901==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x109424: sys_exec (scheduler.c:88)
-==663901==    by 0x10A255: harnessing (harness.c:162)
-==663901==    by 0x10D110: start_simulate (simulate.c:26)
-==663901==    by 0x10B49F: start (start.c:106)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 16 bytes in 1 blocks are definitely lost in loss record 12 of 24
-==663901==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x1093A4: sys_exec (scheduler.c:75)
-==663901==    by 0x10A255: harnessing (harness.c:162)
-==663901==    by 0x10D110: start_simulate (simulate.c:26)
-==663901==    by 0x10B49F: start (start.c:106)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 24 bytes in 1 blocks are still reachable in loss record 13 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10CC7B: create_job_scheduler (job_scheduler.c:91)
-==663901==    by 0x10B136: start (start.c:44)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 24 bytes in 1 blocks are still reachable in loss record 14 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10A15B: save_usage (harness.c:140)
-==663901==    by 0x10A477: harnessing (harness.c:201)
-==663901==    by 0x10D110: start_simulate (simulate.c:26)
-==663901==    by 0x10B49F: start (start.c:106)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 24 bytes in 1 blocks are still reachable in loss record 15 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10A15B: save_usage (harness.c:140)
-==663901==    by 0x10A358: harnessing (harness.c:180)
-==663901==    by 0x10D110: start_simulate (simulate.c:26)
-==663901==    by 0x10B49F: start (start.c:106)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 24 bytes in 1 blocks are still reachable in loss record 16 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10B4AE: start (start.c:110)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 24 bytes in 1 blocks are still reachable in loss record 17 of 24
-==663901==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x109C3B: stats (scheduler.c:296)
-==663901==    by 0x10AC14: main (main.c:71)
-==663901== 
-==663901== 32 bytes in 2 blocks are definitely lost in loss record 18 of 24
-==663901==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x109424: sys_exec (scheduler.c:88)
-==663901==    by 0x10A255: harnessing (harness.c:162)
-==663901==    by 0x10D110: start_simulate (simulate.c:26)
-==663901==    by 0x10B49F: start (start.c:106)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 64 bytes in 4 blocks are still reachable in loss record 19 of 24
-==663901==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10CABB: js_enqueue (job_scheduler.c:33)
-==663901==    by 0x10CD64: create_processes (job_scheduler.c:115)
-==663901==    by 0x10B177: start (start.c:49)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 96 bytes in 1 blocks are still reachable in loss record 20 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10B4C4: start (start.c:111)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 96 bytes in 1 blocks are still reachable in loss record 21 of 24
-==663901==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x109C75: stats (scheduler.c:298)
-==663901==    by 0x10AC14: main (main.c:71)
-==663901== 
-==663901== 96 bytes in 4 blocks are still reachable in loss record 22 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x109F59: _enqueue (harness.c:86)
-==663901==    by 0x10A014: h_set_processes (harness.c:104)
-==663901==    by 0x10B18D: start (start.c:50)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 160 bytes in 4 blocks are still reachable in loss record 23 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10E47C: create_process (process.c:60)
-==663901==    by 0x10CD4A: create_processes (job_scheduler.c:114)
-==663901==    by 0x10B177: start (start.c:49)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== 1,224 bytes in 51 blocks are still reachable in loss record 24 of 24
-==663901==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==663901==    by 0x10A15B: save_usage (harness.c:140)
-==663901==    by 0x10A483: harnessing (harness.c:205)
-==663901==    by 0x10D110: start_simulate (simulate.c:26)
-==663901==    by 0x10B49F: start (start.c:106)
-==663901==    by 0x10ABFC: main (main.c:68)
-==663901== 
-==663901== LEAK SUMMARY:
-==663901==    definitely lost: 48 bytes in 3 blocks
-==663901==    indirectly lost: 0 bytes in 0 blocks
-==663901==      possibly lost: 0 bytes in 0 blocks
-==663901==    still reachable: 1,984 bytes in 81 blocks
-==663901==         suppressed: 0 bytes in 0 blocks
-==663901== 
-==663901== For lists of detected and suppressed errors, rerun with: -s
-==663901== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==3379344== Memcheck, a memory error detector
+==3379344== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3379344== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3379344== Command: ./scheduler -t 4 -v --fcfs
+==3379344== 
+==3379344== 
+==3379344== HEAP SUMMARY:
+==3379344==     in use at exit: 1,728 bytes in 68 blocks
+==3379344==   total heap usage: 197 allocs, 129 frees, 20,158 bytes allocated
+==3379344== 
+==3379344== 8 bytes in 1 blocks are still reachable in loss record 1 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10EAF8: queue_create (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment4/scheduler)
+==3379344==    by 0x109307: scheduler (scheduler.c:59)
+==3379344==    by 0x10B2BE: start (start.c:66)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 8 bytes in 1 blocks are still reachable in loss record 2 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10EAF8: queue_create (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment4/scheduler)
+==3379344==    by 0x109318: scheduler (scheduler.c:60)
+==3379344==    by 0x10B2BE: start (start.c:66)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 8 bytes in 1 blocks are still reachable in loss record 3 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10EAF8: queue_create (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment4/scheduler)
+==3379344==    by 0x109329: scheduler (scheduler.c:61)
+==3379344==    by 0x10B2BE: start (start.c:66)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 16 bytes in 1 blocks are still reachable in loss record 4 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10CD04: create_job_scheduler (job_scheduler.c:92)
+==3379344==    by 0x10B1AC: start (start.c:44)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 16 bytes in 1 blocks are still reachable in loss record 5 of 22
+==3379344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x109E7A: _create (harness.c:49)
+==3379344==    by 0x10A043: h_set_processes (harness.c:99)
+==3379344==    by 0x10B203: start (start.c:50)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 16 bytes in 1 blocks are still reachable in loss record 6 of 22
+==3379344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x109EA8: _create (harness.c:52)
+==3379344==    by 0x10A043: h_set_processes (harness.c:99)
+==3379344==    by 0x10B203: start (start.c:50)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 16 bytes in 1 blocks are still reachable in loss record 7 of 22
+==3379344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x109ED6: _create (harness.c:55)
+==3379344==    by 0x10A043: h_set_processes (harness.c:99)
+==3379344==    by 0x10B203: start (start.c:50)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 24 bytes in 1 blocks are still reachable in loss record 8 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10CCF1: create_job_scheduler (job_scheduler.c:91)
+==3379344==    by 0x10B1AC: start (start.c:44)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 24 bytes in 1 blocks are still reachable in loss record 9 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10A1D1: save_usage (harness.c:140)
+==3379344==    by 0x10A4C7: harnessing (harness.c:196)
+==3379344==    by 0x10D186: start_simulate (simulate.c:26)
+==3379344==    by 0x10B515: start (start.c:106)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 24 bytes in 1 blocks are still reachable in loss record 10 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10A1D1: save_usage (harness.c:140)
+==3379344==    by 0x10A4ED: harnessing (harness.c:201)
+==3379344==    by 0x10D186: start_simulate (simulate.c:26)
+==3379344==    by 0x10B515: start (start.c:106)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 24 bytes in 1 blocks are still reachable in loss record 11 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10A1D1: save_usage (harness.c:140)
+==3379344==    by 0x10A3CE: harnessing (harness.c:180)
+==3379344==    by 0x10D186: start_simulate (simulate.c:26)
+==3379344==    by 0x10B515: start (start.c:106)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 24 bytes in 1 blocks are still reachable in loss record 12 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10B524: start (start.c:110)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 24 bytes in 1 blocks are still reachable in loss record 13 of 22
+==3379344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x109CBE: stats (scheduler.c:319)
+==3379344==    by 0x10AC8A: main (main.c:71)
+==3379344== 
+==3379344== 24 bytes in 1 blocks are definitely lost in loss record 14 of 22
+==3379344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10941B: sys_exec (scheduler.c:92)
+==3379344==    by 0x10A2CB: harnessing (harness.c:162)
+==3379344==    by 0x10D186: start_simulate (simulate.c:26)
+==3379344==    by 0x10B515: start (start.c:106)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 64 bytes in 4 blocks are still reachable in loss record 15 of 22
+==3379344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10CB31: js_enqueue (job_scheduler.c:33)
+==3379344==    by 0x10CDDA: create_processes (job_scheduler.c:115)
+==3379344==    by 0x10B1ED: start (start.c:49)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 72 bytes in 3 blocks are definitely lost in loss record 16 of 22
+==3379344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x109487: sys_exec (scheduler.c:103)
+==3379344==    by 0x10A2CB: harnessing (harness.c:162)
+==3379344==    by 0x10D186: start_simulate (simulate.c:26)
+==3379344==    by 0x10B515: start (start.c:106)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 96 bytes in 1 blocks are still reachable in loss record 17 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10B53A: start (start.c:111)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 96 bytes in 1 blocks are still reachable in loss record 18 of 22
+==3379344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x109CF8: stats (scheduler.c:321)
+==3379344==    by 0x10AC8A: main (main.c:71)
+==3379344== 
+==3379344== 96 bytes in 4 blocks are still reachable in loss record 19 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x109FCF: _enqueue (harness.c:86)
+==3379344==    by 0x10A08A: h_set_processes (harness.c:104)
+==3379344==    by 0x10B203: start (start.c:50)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 144 bytes in 6 blocks are still reachable in loss record 20 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10A1D1: save_usage (harness.c:140)
+==3379344==    by 0x10A3F7: harnessing (harness.c:185)
+==3379344==    by 0x10D186: start_simulate (simulate.c:26)
+==3379344==    by 0x10B515: start (start.c:106)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 160 bytes in 4 blocks are still reachable in loss record 21 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10E4F2: create_process (process.c:60)
+==3379344==    by 0x10CDC0: create_processes (job_scheduler.c:114)
+==3379344==    by 0x10B1ED: start (start.c:49)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== 744 bytes in 31 blocks are still reachable in loss record 22 of 22
+==3379344==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3379344==    by 0x10A1D1: save_usage (harness.c:140)
+==3379344==    by 0x10A4F9: harnessing (harness.c:205)
+==3379344==    by 0x10D186: start_simulate (simulate.c:26)
+==3379344==    by 0x10B515: start (start.c:106)
+==3379344==    by 0x10AC72: main (main.c:68)
+==3379344== 
+==3379344== LEAK SUMMARY:
+==3379344==    definitely lost: 96 bytes in 4 blocks
+==3379344==    indirectly lost: 0 bytes in 0 blocks
+==3379344==      possibly lost: 0 bytes in 0 blocks
+==3379344==    still reachable: 1,632 bytes in 64 blocks
+==3379344==         suppressed: 0 bytes in 0 blocks
+==3379344== 
+==3379344== For lists of detected and suppressed errors, rerun with: -s
+==3379344== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
