@@ -34,6 +34,7 @@ times * io_t = NULL;
 int ticks = 0;
 int beg_tid = 0;
 
+int last_on_total = 0;
 int alg;
 int quant;
 /**
@@ -52,61 +53,41 @@ int quant;
 static int sort_priority(void *a, void *b) {
     return ((times*)a)->t->priority - ((times*)b)->t->priority;
 }
-static bool find_tid(void *a, void *b) {
-   printf("FIND TID\n");
-   printf("TID: %d", ((thread_t *)b)->tid);
-   return ((thread_t *)b)->tid == ((struct times*)a)->t->tid;
-}
 
 
 void scheduler(enum algorithm algorithm, unsigned int quantum) {
 //    cur_red = malloc(sizeof(LL));
+    alg = algorithm;
+    if(alg == 0 || alg == 1 || alg == 2 || alg == 3){
     ready_queue = queue_create(); 
     io_queue = queue_create();
     done_queue = queue_create();
     alg = algorithm;
     quant = quantum;
-    printf("ALG: %d\n", alg);
+    printf("ALG: %d\n", alg);}
+
 }
 
 
-void priority_sort(void* queue, int type){
+void priority_sort(void* queue){
     printf("\n\nPRI SORT ALG: %d\n\n\n", alg);
     queue_sort(queue, sort_priority);
-    if(alg == 3 && type == 0){
-      printf("QUEUE SIZE 1: %d\n", queue_size(queue));
-      struct times* h = queue_head(queue);
-      if(type == 0){
-        printf("READY\n");
-      if(cur_t != NULL && h != NULL && h->t->priority < cur_t->t->priority){
-	  printf("TRUE\n");
-          printf("HTID: %d HPRI: %d CURTID: %d CURPRI: %d\n", h->t->tid, h->t->priority, cur_t->t->tid, cur_t->t->priority);
-          printf("QUEUE SIZE 2: %d\n", queue_size(queue));
-          h = queue_dequeue(queue);
-	  if(h != NULL){
-	    printf("HTID: %d HPRI: %d\n", h->t->tid, h->t->priority);}
-	  queue_enqueue(queue, cur_t);
-	  cur_t->last_on = ticks;
-	  cur_t = h;
-	  cur_t->waiting_time += ticks-cur_t->last_on;
-	  cur_t->last_on = ticks;
-	  sim_dispatch(cur_t->t);
-	      //CHANGE HERE
-    }
-    }
-     else if(type == 1){
-      printf("IO\n");
-      if(io_t != NULL && h!= NULL && h->t->priority < io_t->t->priority){
-        //CHANGE HERE
-	  printf("TRUE\n");
-	  h = queue_dequeue(queue);
-	  io_t->last_on = ticks;
-	  queue_enqueue(queue, io_t);
-	  io_t = h;
-	  io_t->waiting_time += ticks-io_t->last_on;
-	  io_t->last_on = ticks;
-      }}
-    }
+    if(alg == 3){
+	    struct times* h = queue_head(queue);
+	    if(cur_t != NULL && h!=NULL && h->t->priority < cur_t->t->priority){
+	      printf("PREEMPT\n"); 
+              h = queue_dequeue(queue);
+	      queue_enqueue(queue, cur_t);
+	      cur_t->last_on = ticks;
+	      cur_t = h;
+	      cur_t->waiting_time += ticks-cur_t->last_on;
+	      cur_t->last_on = ticks;
+	      sim_dispatch(cur_t->t);
+		    
+//		    h = queue_dequeue(queue);
+//		    queue_enqueue(queue, cur_t);
+//		    cur_t = h;
+	    }}
 }
 /**
  * Thread T is ready to be scheduled for the first time.
@@ -146,8 +127,8 @@ void sys_exec(thread_t *t) {
       ti->beg_time = ticks;
       ti->t = t;
       queue_enqueue(ready_queue, ti);
-      if(alg == 2|| alg == 3){
-        priority_sort(ready_queue,0);}
+     // if(alg == 2|| alg == 3){
+       // priority_sort(ready_queue);}
   }
 }
 
@@ -158,17 +139,42 @@ void sys_exec(thread_t *t) {
  */
 void tick() {
 
+    printf("LAST ON: %d QUANT: %d\n", last_on_total, quant);
+    if (alg == 3){
+	priority_sort(ready_queue);}
     if(cur_t == NULL){
+      if(alg == 2){
+        priority_sort(ready_queue);}
       cur_t = queue_dequeue(ready_queue);
       if(cur_t != NULL){
+	last_on_total = 0;
         cur_t->waiting_time += ticks-cur_t->last_on;
         cur_t->last_on = ticks;
+        printf("\nTHREAD: %d WAIT: %d ADD TIME: %d\n\n", cur_t->t->tid, cur_t->waiting_time, ticks-cur_t->last_on);
 
 	sim_dispatch(cur_t->t);}}
+    else if(alg == 1 && last_on_total >= quant && queue_size(ready_queue)){
+	printf("\nEQUAL QUANT\n\n");
+	printf("START TID: %d\n", cur_t->t->tid);
+	cur_t->last_on = ticks;
+//        while(queue_size(ready_queue) >0){
+//		queue_enqueue(quant_queue, queue_dequeue(ready_queue));}
+	queue_enqueue(ready_queue, cur_t);
+//	while(queue_size(quant_queue)>0){
+//		queue_enqueue(ready_queue, queue_dequeue(quant_queue));}
+	cur_t = queue_dequeue(ready_queue);
+	cur_t->waiting_time += ticks-cur_t->last_on;
+	cur_t->last_on = ticks;
+	sim_dispatch(cur_t->t);
+	printf("END TID: %d\n", cur_t->t->tid);
+	last_on_total = 0;
+    }
+    if(cur_t != NULL){
+	   ++last_on_total;} 
+    else if(last_on_total == quant){
+	    last_on_total = 0;}
     ++ticks;
 }
-
-
 
 /**
  * Thread T has completed execution and should never again be scheduled.
@@ -179,32 +185,22 @@ void sys_exit(thread_t *t) {
 //      sim_dispatch(cur_red->cur);}
 //    else{
 //	    printf("NO NEXT\n"); }
-    printf("SYS EXIT\n");
-    if(cur_t->t->tid != t->tid){
-      printf("FUCKUP HERE\n");
-      struct times* temp = queue_find(ready_queue, find_tid, t);
-      queue_enqueue(ready_queue, cur_t);
-      queue_remove(ready_queue, temp);
-      cur_t = temp;}
     cur_t->running_time = ticks-cur_t->beg_time;
     printf("THREAD: %d EXIT 2: %d BEG: %d TICK: %d\n", t->tid, cur_t->running_time, cur_t->beg_time, ticks);
     queue_enqueue(done_queue, cur_t);
-    
-    cur_t = NULL;  
-    if(alg == 2 || alg == 3){
-      priority_sort(ready_queue,0);
-      priority_sort(io_queue,1);}
-    times *f = queue_dequeue(ready_queue);
-    cur_t = f;
-    if(cur_t != NULL){
-      cur_t->waiting_time += (ticks-cur_t->last_on);
+  
+    cur_t = NULL;
+//    times *f = queue_dequeue(ready_queue);
+//    cur_t = f;
+//    if(cur_t != NULL){
+//      cur_t->waiting_time += (ticks-cur_t->last_on);
 //      cur_t->last_on = ticks;
-      printf("\nTHREAD: %d WAIT: %d ADD TIME: %d\n\n", cur_t->t->tid, cur_t->waiting_time, ticks-cur_t->last_on);
-      cur_t->last_on = ticks;
-      sim_dispatch(cur_t->t);
-    }
-    else{
-      printf("EXIT TO NULL\n");}
+//      printf("\nTHREAD: %d WAIT: %d ADD TIME: %d\n\n", cur_t->t->tid, cur_t->waiting_time, ticks-cur_t->last_on);
+//      cur_t->last_on = ticks;
+//      sim_dispatch(cur_t->t);
+//    }
+//    else{
+//      printf("EXIT TO NULL\n");}
 }
 
 /**
@@ -212,24 +208,9 @@ void sys_exit(thread_t *t) {
  * When the read operation starts, io_starting(T) will be called, when the
  * read operation completes, io_complete(T) will be called.
  */
-
 void sys_read(thread_t *t) {
 
     printf("READ\n");
-    if(cur_t->t->tid != t->tid){
-      printf("\n\n\nFUCK UP HERE\n\n\n");
-      int* tid = malloc(sizeof(int));
-      *tid = cur_t->t->tid;
-      printf("LOOKING FOR TID: %d\n", *(tid));
-      struct times* temp = queue_find(ready_queue, find_tid, t);
-      if(temp == NULL){
-	      printf("NOT FOUND\n");}
-      struct times* temp2 = queue_remove(ready_queue, temp);
-          if(temp2 == NULL){
-        printf("NOT IN LIST\n");}
-      else{
-        printf("TID %d FOUND\n", *tid);}}
-
     if(queue_size(io_queue)==0 && io_t == NULL){
       printf("\nNO IO READ\n\n");
       io_t = cur_t;
@@ -239,26 +220,25 @@ void sys_read(thread_t *t) {
       cur_t->last_on = ticks;
       printf("\nLAST ON: %d IS: %d\n\n", cur_t->t->tid, ticks);
       queue_enqueue(io_queue, cur_t);
-      if(alg == 2|| alg == 3){
-        priority_sort(io_queue,1);
-      //  priority_sort(ready_queue,0);
-      }
+
+
+//      if(alg == 2|| alg == 3){
+//        priority_sort(io_queue);}
+
     }
 
     cur_t = NULL;
-    if(alg == 2 || alg == 3){
-    priority_sort(ready_queue,0);}
-    cur_t = queue_dequeue(ready_queue);
-    if(cur_t != NULL){
-        printf("CHANGE TIME READ: %d\n", cur_t->beg_time);
+//    cur_t = queue_dequeue(ready_queue);
+//    if(cur_t != NULL){
+//        printf("CHANGE TIME READ: %d\n", cur_t->beg_time);
 
-        cur_t->waiting_time += ticks-cur_t->last_on;
-	cur_t->last_on = ticks;
-        printf("\nTHREAD: %d WAIT: %d ADD TIME: %d\n\n", cur_t->t->tid, cur_t->waiting_time, ticks-cur_t->last_on);
- 	sim_dispatch(cur_t->t); 
-    }
-    else{
-      printf("CUR T READ NULL\n");}
+  //      cur_t->waiting_time += ticks-cur_t->last_on;
+//	cur_t->last_on = ticks;
+ //       printf("\nTHREAD: %d WAIT: %d ADD TIME: %d\n\n", cur_t->t->tid, cur_t->waiting_time, ticks-cur_t->last_on);
+ //	sim_dispatch(cur_t->t); 
+  //  }
+  //  else{
+  //    printf("CUR T READ NULL\n");}
 
 }
 
@@ -271,22 +251,6 @@ void sys_write(thread_t *t) {
 
     
     printf("WRITE\n");
-    if(cur_t->t->tid != t->tid)
-    {
-      printf("\n\n\nFUCK UP HERE\n\n\n");
-      
-      int* tid = malloc(sizeof(int));
-      *tid = cur_t->t->tid;
-      printf("LOOKING FOR TID: %d\n", *(tid));
-      struct times* temp = queue_find(ready_queue, find_tid, t);
-      if(temp == NULL){
-	printf("NOT FOUND\n");}
-      struct times* temp2 = queue_remove(ready_queue, temp);
-      if(temp2 == NULL){
-        printf("NOT IN LIST\n");}
-      else{
-        printf("TID %d FOUND\n", *tid);}}
-
     if(queue_size(io_queue)==0 && io_t == NULL){
       io_t = cur_t;
       io_t->last_on = ticks;
@@ -295,8 +259,11 @@ void sys_write(thread_t *t) {
     else{
       queue_enqueue(io_queue, cur_t);
 
-      if(alg == 2|| alg == 3){
-        priority_sort(io_queue,1);}
+
+
+//      if(alg == 2|| alg == 3){
+//        priority_sort(io_queue);}
+
 
       cur_t->last_on = ticks;
       printf("\nLAST ON: %d IS %d\n\n", cur_t->t->tid, ticks);
@@ -304,22 +271,21 @@ void sys_write(thread_t *t) {
     }
 
     cur_t = NULL;
-    if(alg == 2|| alg == 3){
-    priority_sort(ready_queue,0);}
-    cur_t = queue_dequeue(ready_queue);
-    if(cur_t != NULL){
-            printf("CHANGE TIME WRITE: %d\n", cur_t->beg_time);
 
-        cur_t->waiting_time += ticks-cur_t->last_on;
+//    cur_t = queue_dequeue(ready_queue);
+//    if(cur_t != NULL){
+ //           printf("CHANGE TIME WRITE: %d\n", cur_t->beg_time);
 
-	cur_t->last_on = ticks;
-      printf("\nTHREAD: %d WAIT: %d ADD TIME: %d\n\n", cur_t->t->tid, cur_t->waiting_time, ticks-cur_t->last_on);
+ //       cur_t->waiting_time += ticks-cur_t->last_on;
 
-      sim_dispatch(cur_t->t);
-      printf("DISPATCH 2\n");
-    }
-    else{
-	 printf("CURT WRITE NULL\n");}
+//	cur_t->last_on = ticks;
+//      printf("\nTHREAD: %d WAIT: %d ADD TIME: %d\n\n", cur_t->t->tid, cur_t->waiting_time, ticks-cur_t->last_on);
+
+  //    sim_dispatch(cur_t->t);
+  //    printf("DISPATCH 2\n");
+ //   }
+ //   else{
+//	 printf("CURT WRITE NULL\n");}
 
 }
 
@@ -328,12 +294,12 @@ void sys_write(thread_t *t) {
  * scheduled again.
  */
 void io_complete(thread_t *t) {
-  printf("IO DONE : %d\n", io_t->t->tid);
+  printf("IO DONE\n");
   io_t->last_on = ticks;
   queue_enqueue(ready_queue, io_t);
 
-      if(alg == 2|| alg == 3){
-        priority_sort(io_queue,1);}
+     // if(alg == 2|| alg == 3){
+       // priority_sort(ready_queue);}
 
   printf("TIME ENQUEUE: %d\n", io_t->beg_time);
   io_t = queue_dequeue(io_queue);
@@ -342,9 +308,7 @@ void io_complete(thread_t *t) {
   if(cur_t == NULL){
     
     printf("IO CURT NULL\n");
-    
-     
- //   cur_t = queue_dequeue(ready_queue);
+    cur_t = queue_dequeue(ready_queue);
     if(cur_t != NULL){
 	        printf("CHANGE TIME IO DONE: %d\n", cur_t->beg_time);
 	printf("TID: %d\n", cur_t->t->tid);
@@ -359,9 +323,7 @@ void io_complete(thread_t *t) {
     }
   }
   else{
-    printf("IO CURT NOT NULL: %d\n", cur_t->t->tid);
-    if(alg == 3){
-      priority_sort(ready_queue, 0);}}
+    printf("IO CURT NOT NULL: %d\n", cur_t->t->tid);}
 //  f = queue_dequeue(ready_queue);
 //  if(f!=NULL){
 //    sim_dispatch(f);
@@ -386,15 +348,6 @@ void io_starting(thread_t *t) {
 //    if(cur_t == NULL)
 //    {
     printf("STARTING IO\n");
-    if(t->tid != io_t->t->tid){
-      printf("\n\n\nFUCKUP HERE\n\n\n");
-      struct times* temp = queue_find(ready_queue, find_tid, t);
-      struct times* temp2 = queue_remove(ready_queue, temp);
-      if(temp2 == NULL){
-        printf("NOT FOUND\n");
-	}
-	else{
-	printf("FOUND\n");}}
 
     io_t->waiting_time += (ticks-1)-io_t->last_on;
     io_t->last_on = ticks;
@@ -440,10 +393,14 @@ stats_t *stats() {
     mean_turn += ti->running_time;
     mean_wait += ti->waiting_time;
     printf("TI TURNAROUND: %d WAITING: %d\n", ti->running_time, ti->waiting_time);
+    free(ti);
   }
   stats->turnaround_time = mean_turn/stats->thread_count;
   stats->waiting_time = mean_wait/stats->thread_count;
   printf("STATS HERE\n");
+  queue_destroy(ready_queue);
+  queue_destroy(io_queue);
+  queue_destroy(done_queue);
 //  while(queue_size(done_time) != 0){
 //    struct times* ti = queue_dequeue(done_time);
 //    printf("TI TURNAROUND: %d WAITING: %d\n", ti->running_time, ti->waiting_time); 
