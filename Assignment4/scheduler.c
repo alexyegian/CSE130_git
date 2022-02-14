@@ -20,10 +20,12 @@
 #include "scheduler.h"
 #include "queue.h"
 
-typedef struct LL{
-	struct LL *next;
-	struct LL *prev;
-	thread_t *cur;}LL;
+typedef struct times{
+        thread_t *t;
+        int running_time;
+        int waiting_time;
+        int last_on;
+        int beg_time;}times;
 
 
 void* ready_queue;
@@ -58,13 +60,14 @@ static int sort_priority(void *a, void *b) {
 void scheduler(enum algorithm algorithm, unsigned int quantum) {
 //    cur_red = malloc(sizeof(LL));
     alg = algorithm;
-    if(alg == 0 || alg == 1 || alg == 2 || alg == 3){
+//    if(alg == 0 || alg == 1 || alg == 2 || alg == 3){
     ready_queue = queue_create(); 
     io_queue = queue_create();
     done_queue = queue_create();
     alg = algorithm;
     quant = quantum;
-    printf("ALG: %d\n", alg);}
+    printf("ALG: %d\n", alg);
+//}
 
 }
 

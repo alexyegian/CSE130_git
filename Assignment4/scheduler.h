@@ -57,10 +57,4 @@ typedef struct __stats_t {
 } stats_t;
 
 
-typedef struct times{
-	thread_t *t;
-        int running_time;
-        int waiting_time;
-        int last_on;
-	int beg_time;}times;
 
