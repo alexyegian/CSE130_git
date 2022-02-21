@@ -10,6 +10,7 @@
  ************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include "queue.h"
 #include "simulator.h"
 int max_size;
@@ -34,12 +35,25 @@ void pager_init(enum algorithm algorithm, unsigned int frames) {
 		bit_refs = malloc(1000000*sizeof(int));}
 	if(alg == 2){
 		freq_list = malloc(1000000*sizeof(int));}
+	unsigned int page = 5;
+	queue_enqueue(queue, (char *)((long)page));
+	page = (unsigned int)((uintptr_t)queue_dequeue(queue));
+	printf("NUM: %d\n",page);
 }
 
 /**
  * Free any dynamically allocated resources.
  */
 void pager_destroy() {
+	if(alg == 4 || alg == 3){
+		free(bit_refs);}
+	if(alg == 2){
+		while(queue_size(queue) > 0){
+			struct freq_page* t = queue_dequeue(queue);
+			free(t);}
+		free(freq_list);}
+	queue_destroy(queue);
+	printf("DESTROY PAGER\n");
 }
 
 /**
@@ -55,13 +69,13 @@ bool find_elem(void *q, unsigned int val){
   void* temp_queue = queue_create();
   int flag = 0;
   while(queue_size(q) > 0){
-	  unsigned int v = queue_dequeue(q);
+	  unsigned int v = (unsigned int)((uintptr_t)queue_dequeue(q));
 	  if(v != val){
-		  queue_enqueue(temp_queue, v);
+		  queue_enqueue(temp_queue,(char*) ((long)v));
 	  }
 	  else{
 		  if(alg != 1){
-			  queue_enqueue(temp_queue, v);
+			  queue_enqueue(temp_queue, (char *) ((long)v));
 		  }
 		  if(alg == 3){
 			  bit_refs[val] = 1;}
@@ -71,8 +85,8 @@ bool find_elem(void *q, unsigned int val){
 	  }
   }
   while(queue_size(temp_queue)>0){
-	  unsigned int v = queue_dequeue(temp_queue);
-	  queue_enqueue(q, v);
+	  unsigned int v = (unsigned int) ((uintptr_t)queue_dequeue(temp_queue));
+	  queue_enqueue(q, (char *) ((long)v));
   }
   queue_destroy(temp_queue);
   if(flag == 1){
@@ -162,38 +176,38 @@ void pager_request(unsigned int page) {
   if(found == true){
 //	  printf("FOUND PAGE: %d\n", page);
 	  if(alg == 1){
-		  queue_enqueue(queue, page);
+		  queue_enqueue(queue, (char *) ((long)page));
 	  }
-	  return found;}
+	  }
   else{
 	  sim_get_page(page);
 	  if(queue_size(queue) == max_size){
 		  if(alg == 3){
-		    unsigned int temp = queue_dequeue(queue);
+		    unsigned int temp = (unsigned int) ((uintptr_t)queue_dequeue(queue));
 		    while(bit_refs[temp] == 1){
 			    bit_refs[temp] = 0;
-			    queue_enqueue(queue, temp);
-			    temp = queue_dequeue(queue);}
-		    queue_enqueue(queue, page);
+			    queue_enqueue(queue,(char *) ((long)temp));
+			    temp = (unsigned int) ((uintptr_t)queue_dequeue(queue));}
+		    queue_enqueue(queue, (char *) ((long)page));
 		  }
 		  else if(alg == 4){
-		    unsigned int temp = queue_dequeue(queue);
+		    unsigned int temp = (unsigned int) ((uintptr_t)queue_dequeue(queue));
 		    while(bit_refs[temp] == 0){
                             bit_refs[temp] = 1;
-                            queue_enqueue(queue, temp);
-                            temp = queue_dequeue(queue);}
-                    queue_enqueue(queue, page);
+                            queue_enqueue(queue, (char*) ((long)temp));
+                            temp = (unsigned int) ((uintptr_t)queue_dequeue(queue));}
+                    queue_enqueue(queue, (char*)((long)page));
 
 		  }
 		  else{ 
 		  queue_dequeue(queue);
-		  queue_enqueue(queue, page);}}
+		  queue_enqueue(queue, (char *) ((long) page));}}
 	  else{
 //		  printf("GET PAGE PAGE NOT FULL: %d\n", page);
-		  queue_enqueue(queue, page);}}}
+		  queue_enqueue(queue, (char *) ((long)page));}}}
   else{
 	  ++freq_list[page];
-	  bool found = find_elem_freq(queue, page);
+	  bool found = find_elem_freq(queue,page);
 //	  bool found = false;
           if(found){
 		  printf("FOUND PAGE: %d FREQ: %d\n", page, freq_list[page]);}
