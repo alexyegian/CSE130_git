@@ -35,10 +35,6 @@ void pager_init(enum algorithm algorithm, unsigned int frames) {
 		bit_refs = malloc(1000000*sizeof(int));}
 	if(alg == 2){
 		freq_list = malloc(1000000*sizeof(int));}
-	unsigned int page = 5;
-	queue_enqueue(queue, (char *)((long)page));
-	page = (unsigned int)((uintptr_t)queue_dequeue(queue));
-	printf("NUM: %d\n",page);
 }
 
 /**
@@ -53,7 +49,6 @@ void pager_destroy() {
 			free(t);}
 		free(freq_list);}
 	queue_destroy(queue);
-	printf("DESTROY PAGER\n");
 }
 
 /**
@@ -96,45 +91,26 @@ bool find_elem(void *q, unsigned int val){
 }
 
 bool find_elem_freq(void *q, unsigned int val){
-//  printf("FIND ELEM FREQ\n");
-//  return false;
-  printf("START SIZE: %d\n", queue_size(q));
   void* temp_queue = queue_create();
   int flag = 0;
   while(queue_size(q) > 0){
-//	  printf("DEQUEUE. SIZE: %d\n", queue_size(q));
           struct freq_page* v;
 	  v = queue_dequeue(q);
-//	  printf("DEQUEUE PAGE: %d\n", v->page);
-//	  queue_enqueue(temp_queue, v);
-//	  printf("DEQUEUE 3\n");
-//	  if(v == NULL){
-//		  printf("DEQUEUE NULL\n");
-//	  }
-//	  else{
-//		  printf("DEQUEUE NOT NULL\n");
-//		  printf("PAGE: %d\n", v->page);
-//		  printf("NOT NULL 2\n");
-//	  }
           if(v->page != val){
-//		  printf("DEQUEUE NOT FOUND\n");
                 queue_enqueue(temp_queue, v);
           }
           else{
-//		  printf("DEQUEUE FOUND\n");
 		  v->uses += 1;
 		  v->last = step;
                   queue_enqueue(temp_queue, v);
                   flag = 1;
           }
-//	  printf("DEQUEUE 2: %d\n", v->page);
   }
   while(queue_size(temp_queue)>0){
          struct freq_page* v = queue_dequeue(temp_queue);
          queue_enqueue(q, v);
   }
   queue_destroy(temp_queue);
-  printf("END SIZE: %d\n", queue_size(q));
   if(flag == 1){
           return true;
   }
@@ -145,7 +121,6 @@ bool find_elem_freq(void *q, unsigned int val){
 static int sort_freq(void* a, void*b){
   	int x = ((struct freq_page*)a)->uses - ((struct freq_page*)b)->uses;
 	if(x == 0){
-		printf("SAME USES\n");
 		x = ((struct freq_page*)a)->last - ((struct freq_page*)b)->last;	}
 	return x;
 }
@@ -165,16 +140,11 @@ void print_sorted(void* q){
 
 
 void pager_request(unsigned int page) {
-//  sim_get_page(page);
   if(alg == 4){
 	  bit_refs[page] = 0;}
   if(alg != 2){
   bool found = find_elem(queue, page);
-//  bit_refs[page] = 0;
-//  bool found = false;
-//  printf("MAX: %d\n", max_size);
   if(found == true){
-//	  printf("FOUND PAGE: %d\n", page);
 	  if(alg == 1){
 		  queue_enqueue(queue, (char *) ((long)page));
 	  }
@@ -203,37 +173,26 @@ void pager_request(unsigned int page) {
 		  queue_dequeue(queue);
 		  queue_enqueue(queue, (char *) ((long) page));}}
 	  else{
-//		  printf("GET PAGE PAGE NOT FULL: %d\n", page);
 		  queue_enqueue(queue, (char *) ((long)page));}}}
   else{
 	  ++freq_list[page];
 	  bool found = find_elem_freq(queue,page);
-//	  bool found = false;
-          if(found){
-		  printf("FOUND PAGE: %d FREQ: %d\n", page, freq_list[page]);}
-	  else{
+	  if(!found){
 		  sim_get_page(page);
 		  struct freq_page* p = malloc(sizeof(struct freq_page));
 		  p->page = page;
 		  p->uses = freq_list[page];
 		  p->last = step;
 		  if(queue_size(queue) == max_size){
-//			  printf("GET PAGE PAGE FULL: %d FREQ: %d\n", p->page, p->uses);
 		          struct freq_page *t = queue_head(queue);
-	//		  if(t->uses <= p->uses){
 				queue_dequeue(queue);
 				freq_list[t->page] = 0;
 		  	        free(t);
 		        	queue_enqueue(queue, p);}
-//			  else{
-//				  printf("DO NOT INSERT\n");}
-	//	  }
 		  else{
-//			  printf("GET PAGE PAGE NOT FULL: %d FREQ: %d\n", p->page, p->uses);
 			  queue_enqueue(queue, p);
 			  }
 			  }
-//	  printf("SORT\n");
 	  queue_sort(queue, sort_freq);
 	  print_sorted(queue);
 		  }
