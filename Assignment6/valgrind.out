@@ -1,56 +1,699 @@
-==2150667== Memcheck, a memory error detector
-==2150667== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==2150667== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==2150667== Command: ./fileman -b
-==2150667== 
-==2150667== 
-==2150667== HEAP SUMMARY:
-==2150667==     in use at exit: 0 bytes in 0 blocks
-==2150667==   total heap usage: 23 allocs, 23 frees, 43,472 bytes allocated
-==2150667== 
-==2150667== All heap blocks were freed -- no leaks are possible
-==2150667== 
-==2150667== For lists of detected and suppressed errors, rerun with: -s
-==2150667== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==2153585== Memcheck, a memory error detector
-==2153585== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==2153585== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==2153585== Command: ./fileman -a
-==2153585== 
-==2153585== 
-==2153585== HEAP SUMMARY:
-==2153585==     in use at exit: 0 bytes in 0 blocks
-==2153585==   total heap usage: 11 allocs, 11 frees, 19,688 bytes allocated
-==2153585== 
-==2153585== All heap blocks were freed -- no leaks are possible
-==2153585== 
-==2153585== For lists of detected and suppressed errors, rerun with: -s
-==2153585== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==2172786== Memcheck, a memory error detector
-==2172786== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==2172786== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==2172786== Command: ./fileman -s
-==2172786== 
-==2172786== 
-==2172786== HEAP SUMMARY:
-==2172786==     in use at exit: 0 bytes in 0 blocks
-==2172786==   total heap usage: 1 allocs, 1 frees, 4,096 bytes allocated
-==2172786== 
-==2172786== All heap blocks were freed -- no leaks are possible
-==2172786== 
-==2172786== For lists of detected and suppressed errors, rerun with: -s
-==2172786== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==2176986== Memcheck, a memory error detector
-==2176986== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==2176986== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==2176986== Command: ./fileman -e
-==2176986== 
-==2176986== 
-==2176986== HEAP SUMMARY:
-==2176986==     in use at exit: 0 bytes in 0 blocks
-==2176986==   total heap usage: 1 allocs, 1 frees, 4,096 bytes allocated
-==2176986== 
-==2176986== All heap blocks were freed -- no leaks are possible
-==2176986== 
-==2176986== For lists of detected and suppressed errors, rerun with: -s
-==2176986== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==38071== Memcheck, a memory error detector
+==38071== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==38071== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==38071== Command: ./fileman -b
+==38071== 
+==38071== 
+==38071== HEAP SUMMARY:
+==38071==     in use at exit: 0 bytes in 0 blocks
+==38071==   total heap usage: 23 allocs, 23 frees, 43,472 bytes allocated
+==38071== 
+==38071== All heap blocks were freed -- no leaks are possible
+==38071== 
+==38071== For lists of detected and suppressed errors, rerun with: -s
+==38071== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==38791== Memcheck, a memory error detector
+==38791== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==38791== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==38791== Command: ./fileman -a
+==38791== 
+==38791== 
+==38791== HEAP SUMMARY:
+==38791==     in use at exit: 0 bytes in 0 blocks
+==38791==   total heap usage: 11 allocs, 11 frees, 19,688 bytes allocated
+==38791== 
+==38791== All heap blocks were freed -- no leaks are possible
+==38791== 
+==38791== For lists of detected and suppressed errors, rerun with: -s
+==38791== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==42906== Memcheck, a memory error detector
+==42906== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==42906== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==42906== Command: ./fileman -s
+==42906== 
+==42906== Conditional jump or move depends on uninitialised value(s)
+==42906==    at 0x109958: file_rec (fileman.c:234)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==  Uninitialised value was created by a heap allocation
+==42906==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== Conditional jump or move depends on uninitialised value(s)
+==42906==    at 0x109958: file_rec (fileman.c:234)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==  Uninitialised value was created by a heap allocation
+==42906==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== Conditional jump or move depends on uninitialised value(s)
+==42906==    at 0x109958: file_rec (fileman.c:234)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==  Uninitialised value was created by a heap allocation
+==42906==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== Conditional jump or move depends on uninitialised value(s)
+==42906==    at 0x109958: file_rec (fileman.c:234)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==  Uninitialised value was created by a heap allocation
+==42906==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== 
+==42906== HEAP SUMMARY:
+==42906==     in use at exit: 2,920 bytes in 86 blocks
+==42906==   total heap usage: 99 allocs, 13 frees, 339,744 bytes allocated
+==42906== 
+==42906== 144 bytes in 5 blocks are indirectly lost in loss record 1 of 8
+==42906==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== 224 (80 direct, 144 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 8
+==42906==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== 632 bytes in 24 blocks are indirectly lost in loss record 3 of 8
+==42906==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== 648 bytes in 23 blocks are indirectly lost in loss record 4 of 8
+==42906==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== 696 bytes in 24 blocks are indirectly lost in loss record 5 of 8
+==42906==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== 872 (240 direct, 632 indirect) bytes in 3 blocks are definitely lost in loss record 6 of 8
+==42906==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== 888 (240 direct, 648 indirect) bytes in 3 blocks are definitely lost in loss record 7 of 8
+==42906==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== 936 (240 direct, 696 indirect) bytes in 3 blocks are definitely lost in loss record 8 of 8
+==42906==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==42906==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==42906==    by 0x1098D6: file_rec (fileman.c:232)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x10992A: file_rec (fileman.c:235)
+==42906==    by 0x1099B0: fileman_dir (fileman.c:242)
+==42906==    by 0x10BCBE: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10BFFA: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906==    by 0x10C0E0: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==42906== 
+==42906== LEAK SUMMARY:
+==42906==    definitely lost: 800 bytes in 10 blocks
+==42906==    indirectly lost: 2,120 bytes in 76 blocks
+==42906==      possibly lost: 0 bytes in 0 blocks
+==42906==    still reachable: 0 bytes in 0 blocks
+==42906==         suppressed: 0 bytes in 0 blocks
+==42906== 
+==42906== For lists of detected and suppressed errors, rerun with: -s
+==42906== ERROR SUMMARY: 14 errors from 8 contexts (suppressed: 0 from 0)
+==44000== Memcheck, a memory error detector
+==44000== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==44000== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==44000== Command: ./fileman -e
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109E4D: file_rec2 (fileman.c:334)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109F62: file_rec2 (fileman.c:333)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Invalid read of size 8
+==44000==    at 0x109E47: file_rec2 (fileman.c:334)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Address 0x4a65a90 is 0 bytes after a block of size 80 alloc'd
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Invalid read of size 8
+==44000==    at 0x109F5C: file_rec2 (fileman.c:333)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Address 0x4a65a90 is 0 bytes after a block of size 80 alloc'd
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109E4D: file_rec2 (fileman.c:334)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109F62: file_rec2 (fileman.c:333)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109E4D: file_rec2 (fileman.c:334)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109F62: file_rec2 (fileman.c:333)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109E4D: file_rec2 (fileman.c:334)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109E4D: file_rec2 (fileman.c:334)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109F62: file_rec2 (fileman.c:333)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109E4D: file_rec2 (fileman.c:334)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109F62: file_rec2 (fileman.c:333)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109E4D: file_rec2 (fileman.c:334)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109F62: file_rec2 (fileman.c:333)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== Conditional jump or move depends on uninitialised value(s)
+==44000==    at 0x109F62: file_rec2 (fileman.c:333)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==  Uninitialised value was created by a heap allocation
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 
+==44000== HEAP SUMMARY:
+==44000==     in use at exit: 3,016 bytes in 87 blocks
+==44000==   total heap usage: 100 allocs, 13 frees, 339,840 bytes allocated
+==44000== 
+==44000== 152 bytes in 5 blocks are indirectly lost in loss record 1 of 14
+==44000==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 200 bytes in 7 blocks are indirectly lost in loss record 2 of 14
+==44000==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 232 bytes in 8 blocks are indirectly lost in loss record 3 of 14
+==44000==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 232 (80 direct, 152 indirect) bytes in 1 blocks are definitely lost in loss record 4 of 14
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 240 bytes in 8 blocks are indirectly lost in loss record 5 of 14
+==44000==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 280 (80 direct, 200 indirect) bytes in 1 blocks are definitely lost in loss record 6 of 14
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 312 (80 direct, 232 indirect) bytes in 1 blocks are definitely lost in loss record 7 of 14
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 320 (80 direct, 240 indirect) bytes in 1 blocks are definitely lost in loss record 8 of 14
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109EC0: file_rec2 (fileman.c:336)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 408 bytes in 14 blocks are indirectly lost in loss record 9 of 14
+==44000==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 456 bytes in 16 blocks are indirectly lost in loss record 10 of 14
+==44000==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 528 bytes in 19 blocks are indirectly lost in loss record 11 of 14
+==44000==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937A4C: __scandir64_tail (scandir-tail-common.c:69)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 568 (160 direct, 408 indirect) bytes in 2 blocks are definitely lost in loss record 12 of 14
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 616 (160 direct, 456 indirect) bytes in 2 blocks are definitely lost in loss record 13 of 14
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== 688 (160 direct, 528 indirect) bytes in 2 blocks are definitely lost in loss record 14 of 14
+==44000==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44000==    by 0x4937B32: __scandir64_tail (scandir-tail-common.c:62)
+==44000==    by 0x109E16: file_rec2 (fileman.c:326)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x109F34: file_rec2 (fileman.c:340)
+==44000==    by 0x10A0F3: fileman_tree (fileman.c:358)
+==44000==    by 0x10BC9C: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C016: ??? (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000==    by 0x10C10A: main (in /afs/cats.ucsc.edu/users/x/ayegian/CSE130/Assignment6/fileman)
+==44000== 
+==44000== LEAK SUMMARY:
+==44000==    definitely lost: 800 bytes in 10 blocks
+==44000==    indirectly lost: 2,216 bytes in 77 blocks
+==44000==      possibly lost: 0 bytes in 0 blocks
+==44000==    still reachable: 0 bytes in 0 blocks
+==44000==         suppressed: 0 bytes in 0 blocks
+==44000== 
+==44000== For lists of detected and suppressed errors, rerun with: -s
+==44000== ERROR SUMMARY: 27 errors from 23 contexts (suppressed: 0 from 0)

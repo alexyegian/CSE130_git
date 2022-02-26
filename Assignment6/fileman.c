@@ -9,7 +9,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
-
+#include <dirent.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <string.h>
+#include <errno.h>
 /*
  * Extended ASCII box drawing characters:
  * 
@@ -48,6 +52,13 @@
 #define HOR "\u2500"  // ─ 
 #define VER "\u2502"  // │
 #define ELB "\u2514"  // └
+#define _GNU_SOURCE
+
+
+const char* spaces = "    ";
+
+
+
 
 /*
  * Read at most SIZE bytes from FNAME starting at FOFFSET into BUF starting 
@@ -201,8 +212,45 @@ size_t fileman_copy(const char *const fsrc, const char *const fdest)
  *                   wy
  *           tcx
  */
+void file_rec(FILE* f, const char*const dname, int deep, const char* const prev){
+	char* newl = "\n";
+	char* spaces2 = "    ";
+	for(int i = 0; i<deep; ++i){
+		fwrite(spaces2, sizeof(char), 4, f);
+//		printf("    ");
+	}
+//	printf("%s\n", dname);
+//	printf("SIZEOF: %ld\n", strlen(dname));
+	fwrite(dname, sizeof(char), strlen(dname), f);
+	fwrite(newl, sizeof(char), 1, f);
+	char thiscp[4096];
+	strcpy(thiscp, prev);
+	if(deep != 0){
+		strcat(thiscp, "/");}
+	strcat(thiscp, dname);
+	struct dirent **dir_ls;
+	int err = scandir(thiscp, &dir_ls, NULL, alphasort);
+	int ind = 2;
+	while(err != -1 && dir_ls[ind] != NULL){
+		file_rec(f, dir_ls[ind]->d_name, deep+1, thiscp);
+		++ind;
+	}
+}
 void fileman_dir(const int fd, const char *const dname) 
 {
+	FILE* f = fdopen(fd, "w");
+	file_rec(f, dname, 0, "");
+//	struct dirent **dir_ls;
+//	scandir(dname, &dir_ls, NULL, alphasort);
+//	int ind = 2;
+//	while(dir_ls[ind] != NULL){
+//		printf("CHILD NAME: %s\n", dir_ls[ind]->d_name);
+//		++ind;
+//	}	
+//	file_rec(fd, d->ent, 0);
+//	char *const buff = "TEST\n";
+//	fwrite(buff, sizeof(char), sizeof(buff), f);
+	fclose(f);
 }
 
 /*
@@ -231,6 +279,93 @@ void fileman_dir(const int fd, const char *const dname)
  *       │       └── sox
  *       └── tx
  */
+void file_rec2(FILE* f, const char*const dname, int deep, const char* const prev, int cap_type, int done[]){
+        char* newl = "\n";
+        char spaces2[strlen(VER) + 3];
+        strcpy(spaces2, VER);
+        strcat(spaces2, "   ");
+	char cap[strlen(TEE)+strlen(HOR)*2+1];
+	strcpy(cap, TEE);
+	strcat(cap, HOR);
+	strcat(cap, HOR);
+	strcat(cap, " ");
+	char end[strlen(ELB)+strlen(HOR)*2+1];
+	strcpy(end, ELB);
+	strcat(end, HOR);
+	strcat(end, HOR);
+	strcat(end, " ");
+	printf("HERE\n");
+	char *spaces3 = "    ";
+        for(int i = 0; i<deep-1; ++i){
+		if(done[i] == 0){
+                	fwrite(spaces2, sizeof(char), strlen(VER)+3, f);}
+		else{
+			fwrite(spaces3, sizeof(char), 4, f);
+		}
+//              printf("    ");
+        }
+	if(deep > 0){
+		if(cap_type == 0){
+			fwrite(cap, sizeof(char), strlen(TEE)+2*strlen(HOR)+1, f);
+		}
+		else{
+			printf("HERE END\n");
+			fwrite(end, sizeof(char), strlen(ELB)+2*strlen(HOR)+1, f);
+		}
+	}
+//      printf("%s\n", dname);
+//      printf("SIZEOF: %ld\n", strlen(dname));
+        fwrite(dname, sizeof(char), strlen(dname), f);
+        fwrite(newl, sizeof(char), 1, f);
+        char thiscp[4096];
+        strcpy(thiscp, prev);
+        if(deep != 0){
+                strcat(thiscp, "/");}
+        strcat(thiscp, dname);
+        struct dirent **dir_ls;
+        int err = scandir(thiscp, &dir_ls, NULL, alphasort);
+//	int len = 0;
+	int ind = 2;
+//	while(err != 1 && dir_ls[ind] != NULL){
+//		++len;
+//		++ind;}
+//        ind = 2;
+        while(err != -1 && dir_ls[ind] != NULL){
+		if(dir_ls[ind+1] == NULL){
+			done[deep] = 1;
+			file_rec2(f, dir_ls[ind]->d_name, deep+1, thiscp, 1, done);
+		}
+		else{
+			done[deep] = 0;
+                	file_rec2(f, dir_ls[ind]->d_name, deep+1, thiscp, 0, done);
+		}
+                ++ind;
+        }
+}
+
 void fileman_tree(const int fd, const char *const dname) 
 {
+	int done[1000];
+	printf("VER: %s\n", VER);
+	printf("TEE: %s\n", TEE);
+	printf("HOR: %s\n", HOR);
+	char spaces2[strlen(VER) + 3];
+	strcpy(spaces2, VER);
+	strcat(spaces2, "   ");
+	printf("SIZE: %ld\n", strlen(spaces2));
+	printf("SPACES ATTEMPT: %sX\n", spaces2);
+	FILE* f = fdopen(fd, "w");
+        file_rec2(f, dname, 0, "", 0, done);
+//      struct dirent **dir_ls;
+//      scandir(dname, &dir_ls, NULL, alphasort);
+//      int ind = 2;
+//      while(dir_ls[ind] != NULL){
+//              printf("CHILD NAME: %s\n", dir_ls[ind]->d_name);
+//              ++ind;
+//      }
+//      file_rec(fd, d->ent, 0);
+//      char *const buff = "TEST\n";
+//      fwrite(buff, sizeof(char), sizeof(buff), f);
+        fclose(f);
+
 }
