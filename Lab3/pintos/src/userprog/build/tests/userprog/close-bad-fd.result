@@ -6,7 +6,6 @@ Acceptable output:
   (close-bad-fd) end
   close-bad-fd: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: close-bad-fd
   (close-bad-fd) begin
 - (close-bad-fd) end
 - close-bad-fd: exit(0)
@@ -15,7 +14,6 @@ Acceptable output:
   (close-bad-fd) begin
   close-bad-fd: exit(-1)
 Differences in `diff -u' format:
-+ CMDLINE: close-bad-fd
   (close-bad-fd) begin
 - close-bad-fd: exit(-1)
 + [ERROR] system call 12 is unimplemented!

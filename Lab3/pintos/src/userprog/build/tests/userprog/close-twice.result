@@ -6,28 +6,26 @@ Acceptable output:
   (close-twice) open "sample.txt"
   (close-twice) close "sample.txt"
   (close-twice) close "sample.txt" again
-  close-twice: exit(-1)
-Differences in `diff -u' format:
-+ CMDLINE: close-twice
-  (close-twice) begin
-  (close-twice) open "sample.txt"
-- (close-twice) close "sample.txt"
-- (close-twice) close "sample.txt" again
-- close-twice: exit(-1)
-+ [ERROR] system call 6 is unimplemented!
-Acceptable output:
-  (close-twice) begin
-  (close-twice) open "sample.txt"
-  (close-twice) close "sample.txt"
-  (close-twice) close "sample.txt" again
   (close-twice) end
   close-twice: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: close-twice
   (close-twice) begin
   (close-twice) open "sample.txt"
 - (close-twice) close "sample.txt"
 - (close-twice) close "sample.txt" again
 - (close-twice) end
 - close-twice: exit(0)
++ [ERROR] system call 6 is unimplemented!
+Acceptable output:
+  (close-twice) begin
+  (close-twice) open "sample.txt"
+  (close-twice) close "sample.txt"
+  (close-twice) close "sample.txt" again
+  close-twice: exit(-1)
+Differences in `diff -u' format:
+  (close-twice) begin
+  (close-twice) open "sample.txt"
+- (close-twice) close "sample.txt"
+- (close-twice) close "sample.txt" again
+- close-twice: exit(-1)
 + [ERROR] system call 6 is unimplemented!

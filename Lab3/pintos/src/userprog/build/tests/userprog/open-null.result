@@ -5,7 +5,6 @@ Acceptable output:
   (open-null) begin
   open-null: exit(-1)
 Differences in `diff -u' format:
-+ CMDLINE: open-null
   (open-null) begin
 - open-null: exit(-1)
 + [ERROR] system call 6 is unimplemented!
@@ -14,7 +13,6 @@ Acceptable output:
   (open-null) end
   open-null: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: open-null
   (open-null) begin
 - (open-null) end
 - open-null: exit(0)

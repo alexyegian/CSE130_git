@@ -8,7 +8,6 @@ Acceptable output:
   (open-twice) end
   open-twice: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: open-twice
   (open-twice) begin
 - (open-twice) open "sample.txt" once
 - (open-twice) open "sample.txt" again

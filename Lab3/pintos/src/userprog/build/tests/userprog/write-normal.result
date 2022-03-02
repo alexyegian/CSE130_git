@@ -8,7 +8,6 @@ Acceptable output:
   (write-normal) end
   write-normal: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: write-normal
   (write-normal) begin
   (write-normal) create "test.txt"
 - (write-normal) open "test.txt"

@@ -7,7 +7,6 @@ Acceptable output:
   (write-zero) end
   write-zero: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: write-zero
   (write-zero) begin
   (write-zero) open "sample.txt"
 - (write-zero) end

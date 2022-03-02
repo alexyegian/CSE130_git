@@ -6,7 +6,6 @@ Acceptable output:
   (open-normal) end
   open-normal: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: open-normal
   (open-normal) begin
 - (open-normal) end
 - open-normal: exit(0)

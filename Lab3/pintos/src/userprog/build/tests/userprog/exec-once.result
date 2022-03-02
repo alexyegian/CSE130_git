@@ -4,14 +4,13 @@ Test output failed to match any acceptable form.
 Acceptable output:
   (exec-once) begin
   (child-simple) run
-  child-simple: exit(1865)
+  child-simple: exit(1959)
   (exec-once) end
   exec-once: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: exec-once
   (exec-once) begin
 - (child-simple) run
-- child-simple: exit(1865)
+- child-simple: exit(1959)
 - (exec-once) end
 - exec-once: exit(0)
 + [ERROR] system call 2 is unimplemented!

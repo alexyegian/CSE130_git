@@ -9,7 +9,6 @@ Acceptable output:
   (wait-killed) end
   wait-killed: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: wait-killed
   (wait-killed) begin
 - (child-bad) begin
 - child-bad: exit(-1)

@@ -4,17 +4,16 @@ Test output failed to match any acceptable form.
 Acceptable output:
   (wait-twice) begin
   (child-simple) run
-  child-simple: exit(1865)
-  (wait-twice) wait(exec()) = 1865
+  child-simple: exit(1959)
+  (wait-twice) wait(exec()) = 1959
   (wait-twice) wait(exec()) = -1
   (wait-twice) end
   wait-twice: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: wait-twice
   (wait-twice) begin
 - (child-simple) run
-- child-simple: exit(1865)
-- (wait-twice) wait(exec()) = 1865
+- child-simple: exit(1959)
+- (wait-twice) wait(exec()) = 1959
 - (wait-twice) wait(exec()) = -1
 - (wait-twice) end
 - wait-twice: exit(0)

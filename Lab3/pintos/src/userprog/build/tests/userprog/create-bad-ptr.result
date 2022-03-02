@@ -5,7 +5,6 @@ Acceptable output:
   (create-bad-ptr) begin
   create-bad-ptr: exit(-1)
 Differences in `diff -u' format:
-+ CMDLINE: create-bad-ptr
   (create-bad-ptr) begin
 - create-bad-ptr: exit(-1)
 + [ERROR] system call 4 is unimplemented!

@@ -7,7 +7,6 @@ Acceptable output:
   (create-normal) end
   create-normal: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: create-normal
   (create-normal) begin
   (create-normal) create quux.dat
 - (create-normal) end

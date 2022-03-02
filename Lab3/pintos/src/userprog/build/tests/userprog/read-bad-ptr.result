@@ -7,7 +7,6 @@ Acceptable output:
   (read-bad-ptr) end
   read-bad-ptr: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: read-bad-ptr
   (read-bad-ptr) begin
   (read-bad-ptr) open "sample.txt"
 - (read-bad-ptr) end
@@ -18,7 +17,6 @@ Acceptable output:
   (read-bad-ptr) open "sample.txt"
   read-bad-ptr: exit(-1)
 Differences in `diff -u' format:
-+ CMDLINE: read-bad-ptr
   (read-bad-ptr) begin
   (read-bad-ptr) open "sample.txt"
 - read-bad-ptr: exit(-1)

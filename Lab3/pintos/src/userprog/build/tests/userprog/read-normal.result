@@ -9,7 +9,6 @@ Acceptable output:
   (read-normal) end
   read-normal: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: read-normal
   (read-normal) begin
   (read-normal) open "sample.txt" for verification
 - (read-normal) verified contents of "sample.txt"

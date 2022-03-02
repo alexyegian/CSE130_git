@@ -1,5 +1,5 @@
 Copying tests/userprog/close-stdin to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/8GOSBwhZ9H.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/CjQg31F_op.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run close-stdin
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  444,006,400 loops/s.
+Calibrating timer...  419,430,400 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 205 sectors (102 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -22,15 +22,14 @@ Extracting ustar archive from scratch device into file system...
 Putting 'close-stdin' into the file system...
 Erasing ustar archive...
 Executing 'close-stdin':
-CMDLINE: close-stdin
 (close-stdin) begin
 [ERROR] system call 12 is unimplemented!
 Execution of 'close-stdin' complete.
-Timer: 85 ticks
-Thread: 12 idle ticks, 73 kernel ticks, 0 user ticks
+Timer: 82 ticks
+Thread: 2 idle ticks, 80 kernel ticks, 0 user ticks
 hda2 (filesys): 244 reads, 213 writes
 hda3 (scratch): 106 reads, 2 writes
-Console: 925 characters output
+Console: 903 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

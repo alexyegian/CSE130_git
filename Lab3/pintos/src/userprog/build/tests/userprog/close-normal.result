@@ -8,7 +8,6 @@ Acceptable output:
   (close-normal) end
   close-normal: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: close-normal
   (close-normal) begin
   (close-normal) open "sample.txt"
 - (close-normal) close "sample.txt"

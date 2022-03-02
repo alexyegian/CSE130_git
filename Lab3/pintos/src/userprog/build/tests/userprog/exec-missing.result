@@ -8,7 +8,6 @@ Acceptable output:
   (exec-missing) end
   exec-missing: exit(0)
 Differences in `diff -u' format:
-+ CMDLINE: exec-missing
   (exec-missing) begin
 - load: 'no-such-file': open failed, no such file
 - (exec-missing) exec("no-such-file"): -1
