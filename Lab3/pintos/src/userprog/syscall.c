@@ -49,12 +49,17 @@
 #include "userprog/syscall.h"
 #include "userprog/process.h"
 #include "userprog/umem.h"
+#include "devices/timer.h"
+#include "threads/semaphore.h"
 
+#include <string.h>
 /****************** System Call Implementations ********************/
 
 /*
  * BUFFER+0 should be a valid user adresses
  */
+struct semaphore glob_sema;
+
 void sys_exit(int exitcode) 
 {
   printf("%s: exit(%d)\n", thread_current()->name, exitcode);
@@ -99,6 +104,9 @@ static void write_handler(struct intr_frame *f)
     f->eax = sys_write(fd, buffer, size);
 }
 
+static bool create_file(struct intr_frame *f){
+    return true;
+}
 /****************** System Call Handler ********************/
 
 static void
@@ -114,6 +122,8 @@ syscall_handler(struct intr_frame *f)
   // Do NOT remove this line
   thread_current()->current_esp = f->esp;
 
+  
+  
   switch (syscall) {
   case SYS_HALT: 
     shutdown_power_off();
@@ -138,6 +148,7 @@ void
 syscall_init (void)
 {
   intr_register_int (0x30, 3, INTR_ON, syscall_handler, "syscall");
+  semaphore_init(&glob_sema, 1);
 }
 
 

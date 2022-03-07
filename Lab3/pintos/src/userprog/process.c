@@ -57,11 +57,13 @@
 #include "userprog/syscall.h"
 #include "userprog/process.h"
 #include "devices/timer.h"
-
-
+#include "threads/semaphore.h"
 
 char* cmdline2;
 
+struct str_and_sema{
+	struct semaphore* sema;
+	char* str;}str_and_sema;
 /*
  * Push the command and arguments found in CMDLINE onto the stack, word 
  * aligned with the stack pointer ESP. Should only be called after the ELF 
@@ -72,17 +74,8 @@ push_command(const char *cmdline UNUSED, void **esp)
 {
   int* offsets = malloc(1000*sizeof(int));
   int offlen = 0;
-  //OFFSETS SHOULD HAVE SAME SIZE AS ARGV BEING LAZY NOW
-  //
-//  printf("Base Address: 0x%08x\n", (unsigned int)*esp);
- // printf("PUSH CMDLINE: %s\n", cmdline2);
-  // Word align with the stack pointer.
   *esp = (void *)((unsigned int)(*esp) & 0xfffffffc);
   unsigned int base = (unsigned int) *esp;
-//  printf("BASE: 0x%08x\n", (unsigned int) base);
-  //PUSH ALL ARGV TO STACK. EACH OF THEM HAS UNIQUE SIZE GOTTEN 
-  //USING STRLEN
-  //THEN PUSH THE AMOUNT OF OFFSET TO THE OFFSETS PART
   int tot_len = strlen(cmdline2);
   int end_ind = tot_len-1;
   int start_ind = tot_len-1;
@@ -90,16 +83,13 @@ push_command(const char *cmdline UNUSED, void **esp)
   while(start_ind >0){
   	if(cmdline2[start_ind] == ' '){
 	  if(prev_space == 1){
-//		  printf("DBL SPACE\n");
 	    end_ind = start_ind-1;
 	  }
 	  else{
 	  char* str = calloc(end_ind - start_ind+1, sizeof(char));
-//	  printf("FROM: %d COPY: %d\n", start_ind+1, end_ind-start_ind+1);
 	  memcpy(str, &cmdline2[start_ind+1], end_ind-start_ind);
 	  *esp -= end_ind-start_ind+1;
 	  memcpy(*esp, str, end_ind-start_ind+1);
-//	  printf("STR:%sLEN: %d ESP: 0x%08x\n", str, (end_ind-start_ind+1), (unsigned int) *esp);
 	  offsets[offlen] = end_ind-start_ind+1;
 	  ++offlen;
 	  end_ind = start_ind-1;
@@ -114,53 +104,23 @@ push_command(const char *cmdline UNUSED, void **esp)
   *esp -= end_ind-start_ind+1;
   memcpy(str, &cmdline2[start_ind], end_ind-start_ind);
   memcpy(*esp, str, end_ind-start_ind+1);
-//  printf("LAST STR:%sLEN: %d ESP: 0x%08x\n", str, end_ind-start_ind+1, (unsigned int) *esp);
   offsets[offlen] = end_ind-start_ind+1;
   ++offlen;
-  
-  //int len = strlen(cmdline2)+1;
   int w_align = 4-((unsigned int)*(esp)%4);
-  //int argc = 1;
-  //*esp -= len;
-  //memcpy(*esp, cmdline2, len);
-  //char s[10];
-  //memcpy(s, *esp, 10);
-
-
-//  printf("ESP: 0x%08x STR: %s\n", (unsigned int) *esp, s);
-//  *esp -= len;
-//  offsets[offlen] += len;
-//  ++offlen;
-//  printf("ESP: 0x%08x\n", (unsigned int) *esp);
-  //WORD ALIGN IS EQUAL TO THE VALUE NEEDED TO MAKE POINTER BE DIVISIBLE BY 4
   *esp -= w_align;
-///  printf("ESP: 0x%08x\n", (unsigned int) *esp);
-//  printf("BASE: 0x%08x\n", (unsigned int) base);
   *esp -= 4;
   *((char *) *esp) = 0;
-//  printf("ESP: 0x%08x\n", (unsigned int) *esp);
-
   for(int i = 0; i<offlen; ++i){
 	  *esp -= 4;
 	  base -= offsets[i];
-//	  printf("BASE: 0x%08x\n", (unsigned int) base);
-// char hex[8];
-//	  snprintf(hex,8, "%08x", (unsigned int) base);
-//	  printf("HEX: %s\n", hex);
 	  *((unsigned int *)* esp) = (unsigned int) base;
-//	  printf("BASE: 0x%08x STORED: 0x%08x\n", (unsigned int) base, *((unsigned int *)*esp));
-//	  printf("ESP: 0x%08x STORED VALUE: 0x%08x\n", (unsigned int) *esp, (unsigned int)*((unsigned int *)*esp));
   }
   *esp -= 4;
   *((unsigned int *) *esp) = (unsigned int) *esp + 4;
-//  printf("ESP: 0x%08x STORED VALUE: 0x%08x SUPPOSED TO BE: 0x%08x\n", (unsigned int) *esp, (unsigned int) *((unsigned int *)*esp), (unsigned int) *esp + 4);
   *esp -= 4;
   *((char *) *esp) = offlen;
-//  printf("ESP: 0x%08x STORED VALUE: 0x%08x \n", (unsigned int) *esp, (unsigned int) *((char *)*esp));
   *esp -= 4;
   *((char *) *esp) = 0;
-//  printf("ESP: 0x%08x STORED VALUE: 0x%08x \n", (unsigned int) *esp, (unsigned int) *((char *)*esp));
-
   // Some of your CSE130 Lab 3 code will go here.
   //
   // You'll be doing address arithmetic here and that's one of only a handful
@@ -182,36 +142,25 @@ push_command(const char *cmdline UNUSED, void **esp)
 static void
 start_process(void *cmdline)
 {
-//  printf("START PROCESS: %s\n", (char *)cmdline);
-     	// Initialize interrupt frame and load executable.
   struct intr_frame pif;
+  void* cmdline3 = (*((struct str_and_sema*) cmdline)).str;
   int x = 0;
-  while(((char*)cmdline)[x]!=' ' && x<strlen(cmdline)){
+  while(((char*)cmdline3)[x]!=' ' && x<strlen(cmdline3)){
 	  ++x;}
   ++x;
-//  printf("X: %d SIZE: %ld\n", x, sizeof(char));
   char* cmd_no_args = calloc(x, sizeof(char));
-//  printf("START COPY\n");
-  memcpy(cmd_no_args, ((char *)cmdline), x);
+  memcpy(cmd_no_args, ((char *)cmdline3), x);
   cmd_no_args[x-1] = 0;
-//  printf("NO ARGS: %s\n", cmd_no_args);
   memset(&pif, 0, sizeof pif);
-  
-
-//  cmdline = cmd_no_args;
-
-
   pif.gs = pif.fs = pif.es = pif.ds = pif.ss = SEL_UDSEG;
   pif.cs = SEL_UCSEG;
   pif.eflags = FLAG_IF | FLAG_MBS;
-//  printf("BEF LOADED\n");
   bool loaded = elf_load(cmd_no_args, &pif.eip, &pif.esp);
-//  printf("LOADED: %d\n", loaded);
   if (loaded)
-    push_command(cmdline, &pif.esp);
+    push_command(cmdline3, &pif.esp);
  
-  palloc_free_page(cmdline);
-
+  palloc_free_page(cmdline3);
+  semaphore_up((((struct str_and_sema *) cmdline)->sema));
   if (!loaded)
     thread_exit();
 
@@ -235,7 +184,6 @@ process_execute(const char *cmdline)
 {
   // Make a copy of CMDLINE to avoid a race condition between the caller 
   // and elf_load()
-//  printf("EXECUTE PROCESS: %s\n", cmdline);
   char *cmdline_copy = palloc_get_page(0);
   if (cmdline_copy == NULL)
     return TID_ERROR;
@@ -254,24 +202,18 @@ process_execute(const char *cmdline)
   while(((char*)cmdline)[x]!=' ' && x<strlen(cmdline)){
           ++x;}
   ++x;
-//  printf("X: %d SIZE: %ld\n", x, sizeof(char));
-//  printf("START COPY\n");
   memcpy(cmd_no_args, ((char *)cmdline), x);
   cmd_no_args[x-1] = 0;
 
 
+  struct semaphore s;   
+  semaphore_init(&s, 0);
+  struct str_and_sema se;
+  se.sema = &s;
+  se.str = cmd_no_args;
+  tid_t tid = thread_create(cmd_no_args, PRI_DEFAULT, start_process, &se);
 
-//  printf("COMMAND LINE: %s\n", cmd_no_args);
-  // Create a Kernel Thread for the new process
-  tid_t tid = thread_create(cmd_no_args, PRI_DEFAULT, start_process, cmd_no_args);
-
-
-  timer_sleep(10);
-//  thread_yield();
-  // CSE130 Lab 3 : The "parent" thread immediately returns after creating
-  // the child. To get ANY of the tests passing, you need to synchronise the
-  // activity of the parent and child threads.
-
+  semaphore_down(&s);
   return tid;
 }
 
