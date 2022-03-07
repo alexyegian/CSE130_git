@@ -5,13 +5,13 @@ use tests::tests;
 check_expected ([<<'EOF']);
 (exec-multiple) begin
 (child-simple) run
-child-simple: exit(1933)
+child-simple: exit(1504)
 (child-simple) run
-child-simple: exit(1933)
+child-simple: exit(1504)
 (child-simple) run
-child-simple: exit(1933)
+child-simple: exit(1504)
 (child-simple) run
-child-simple: exit(1933)
+child-simple: exit(1504)
 (exec-multiple) end
 exec-multiple: exit(0)
 EOF

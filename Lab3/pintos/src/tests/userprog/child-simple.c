@@ -11,5 +11,5 @@ int
 main (void) 
 {
   msg ("run");
-  return 1933;
+  return 1504;
 }

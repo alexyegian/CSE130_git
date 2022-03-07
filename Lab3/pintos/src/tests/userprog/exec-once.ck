@@ -5,7 +5,7 @@ use tests::tests;
 check_expected ([<<'EOF']);
 (exec-once) begin
 (child-simple) run
-child-simple: exit(1933)
+child-simple: exit(1504)
 (exec-once) end
 exec-once: exit(0)
 EOF

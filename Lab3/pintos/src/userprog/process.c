@@ -59,18 +59,19 @@
 #include "devices/timer.h"
 #include "threads/semaphore.h"
 
-char* cmdline2;
+//char* cmdline2;
 
 struct str_and_sema{
 	struct semaphore* sema;
-	char* str;}str_and_sema;
+	char* str;
+        char* big_str;}str_and_sema;
 /*
  * Push the command and arguments found in CMDLINE onto the stack, word 
  * aligned with the stack pointer ESP. Should only be called after the ELF 
  * format binary has been loaded by elf_load();
  */
 static void
-push_command(const char *cmdline UNUSED, void **esp)
+push_command(const char *cmdline2 UNUSED, void **esp)
 {
   int* offsets = malloc(1000*sizeof(int));
   int offlen = 0;
@@ -144,6 +145,7 @@ start_process(void *cmdline)
 {
   struct intr_frame pif;
   void* cmdline3 = (*((struct str_and_sema*) cmdline)).str;
+  void* cmdline2 =  (*((struct str_and_sema*) cmdline)).big_str;
   int x = 0;
   while(((char*)cmdline3)[x]!=' ' && x<strlen(cmdline3)){
 	  ++x;}
@@ -157,7 +159,7 @@ start_process(void *cmdline)
   pif.eflags = FLAG_IF | FLAG_MBS;
   bool loaded = elf_load(cmd_no_args, &pif.eip, &pif.esp);
   if (loaded)
-    push_command(cmdline3, &pif.esp);
+    push_command(cmdline2, &pif.esp);
  
   palloc_free_page(cmdline3);
   semaphore_up((((struct str_and_sema *) cmdline)->sema));
@@ -189,8 +191,8 @@ process_execute(const char *cmdline)
     return TID_ERROR;
 
   strlcpy(cmdline_copy, cmdline, PGSIZE);
-
-  cmdline2 = palloc_get_page(0);
+  
+  void * cmdline2 = palloc_get_page(0);
   if(cmdline2 == NULL){
 	  return TID_ERROR;}
   strlcpy(cmdline2, cmdline, PGSIZE);
@@ -211,6 +213,7 @@ process_execute(const char *cmdline)
   struct str_and_sema se;
   se.sema = &s;
   se.str = cmd_no_args;
+  se.big_str = cmdline2;
   tid_t tid = thread_create(cmd_no_args, PRI_DEFAULT, start_process, &se);
 
   semaphore_down(&s);
