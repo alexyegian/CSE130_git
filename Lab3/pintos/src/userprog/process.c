@@ -146,18 +146,10 @@ start_process(void *cmdline)
   struct intr_frame pif;
   void* cmdline3 = (*((struct str_and_sema*) cmdline)).str;
   void* cmdline2 =  (*((struct str_and_sema*) cmdline)).big_str;
-  int x = 0;
-  while(((char*)cmdline3)[x]!=' ' && x<strlen(cmdline3)){
-	  ++x;}
-  ++x;
-  char* cmd_no_args = calloc(x, sizeof(char));
-  memcpy(cmd_no_args, ((char *)cmdline3), x);
-  cmd_no_args[x-1] = 0;
-  memset(&pif, 0, sizeof pif);
   pif.gs = pif.fs = pif.es = pif.ds = pif.ss = SEL_UDSEG;
   pif.cs = SEL_UCSEG;
   pif.eflags = FLAG_IF | FLAG_MBS;
-  bool loaded = elf_load(cmd_no_args, &pif.eip, &pif.esp);
+  bool loaded = elf_load(cmdline3, &pif.eip, &pif.esp);
   if (loaded)
     push_command(cmdline2, &pif.esp);
  

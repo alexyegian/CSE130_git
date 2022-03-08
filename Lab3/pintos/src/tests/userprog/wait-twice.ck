@@ -5,8 +5,8 @@ use tests::tests;
 check_expected ([<<'EOF']);
 (wait-twice) begin
 (child-simple) run
-child-simple: exit(1504)
-(wait-twice) wait(exec()) = 1504
+child-simple: exit(1833)
+(wait-twice) wait(exec()) = 1833
 (wait-twice) wait(exec()) = -1
 (wait-twice) end
 wait-twice: exit(0)
